@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
-@TeleOp (name ="basic: linear opmode", group ="linear opmode")
+@TeleOp (name ="Pepijn", group ="linear opmode")
 @Disabled
 public class Oefening extends LinearOpMode {
 
