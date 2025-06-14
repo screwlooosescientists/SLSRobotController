@@ -23,17 +23,24 @@ public class Dirk_oefening extends LinearOpMode {
 
         waitForStart();
         while (opModeIsActive()) {
-            double Power;
+            double Powerleft;
+            double powerright;
 
-            Power = gamepad1.left_stick_y;
+            Powerleft = gamepad1.left_stick_y;
+            powerright = gamepad1.right_stick_x;
 
-            leftdrive.setPower(Power);
-            rightdrive.setPower(Power);
-            rightback.setPower(Power);
-            leftback.setPower(Power);
+            leftdrive.setPower(Powerleft);
+            rightdrive.setPower(Powerleft);
+            rightback.setPower(Powerleft);
+            leftback.setPower(Powerleft);
 
-            telemetry.addData("Motors", "left (%.2f), right (%.2f)", Power);
-            telemetry.update();
+            leftdrive.setPower(powerright);
+            rightdrive.setPower(powerright);
+            rightback.setPower(powerright);
+            leftback.setPower(powerright);
+
+
+
 
         }
     }
