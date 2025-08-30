@@ -25,5 +25,25 @@ public class Mik_oefening extends LinearOpMode {
         rightback = hardwareMap.get(DcMotor.class, "right_back");
         leftback = hardwareMap.get(DcMotor.class, "left_back");
 
+        waitForStart();
+        while (opModeIsActive()) {
+            double Powerleft;
+            double powerright;
+
+            Powerleft = gamepad1.left_stick_y;
+            powerright = gamepad1.right_stick_x;
+
+            leftdrive.setPower(Powerleft);
+            rightdrive.setPower(Powerleft);
+            rightback.setPower(Powerleft);
+            leftback.setPower(Powerleft);
+
+            leftdrive.setPower(powerright);
+            rightdrive.setPower(powerright);
+            rightback.setPower(powerright);
+            leftback.setPower(powerright);
+
+
+        }
+        }
     }
-}
