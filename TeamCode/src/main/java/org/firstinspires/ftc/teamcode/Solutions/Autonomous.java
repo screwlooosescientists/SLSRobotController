@@ -13,7 +13,6 @@ class SimpleAutonomous extends LinearOpMode {
     private DcMotor Left_Back = null;
     private DcMotor Right_Back = null;
 
-
     @Override
     public void runOpMode() {
         // Hardware mapping
