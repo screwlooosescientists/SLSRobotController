@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
 @TeleOp (name ="Pepijn", group ="linear opmode")
-@Disabled
+
 public class Oefening extends LinearOpMode {
 
     private ElapsedTime runtime = new ElapsedTime();;
@@ -27,13 +27,13 @@ telemetry . addData( "status","Initialized");
 telemetry . update();
 
 left_front  = hardwareMap.get(DcMotor.class, "left_front");
-right_back = hardwareMap .get(DcMotor.class, "right_front");
+right_front = hardwareMap .get(DcMotor.class, "right_front");
 left_back = hardwareMap  .get(DcMotor.class, "left_back");
 right_back = hardwareMap .get(DcMotor.class, "right_back");
 
 
 left_front.setDirection(DcMotor.Direction.REVERSE);
-right_back.setDirection(DcMotorSimple.Direction.FORWARD);
+right_front.setDirection(DcMotorSimple.Direction.FORWARD);
 left_back.setDirection(DcMotorSimple.Direction.FORWARD);
 right_back.setDirection(DcMotorSimple.Direction.REVERSE);
 waitForStart();
@@ -42,7 +42,7 @@ runtime.reset();
             double leftPower;
             double rightPower;
 
-            double drive = -gamepad1.left_stick_y;
+            double drive = -gamepad1.left_stick_x;
             double turn  =  gamepad1.right_stick_x;
             leftPower    = Range.clip(drive + turn, -1.0, 1.0) ;
             rightPower   = Range.clip(drive - turn, -1.0, 1.0) ;
