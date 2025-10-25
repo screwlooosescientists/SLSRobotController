@@ -45,10 +45,10 @@ public class AutonomousTest extends LinearOpMode {
     }
 
     private void turnLeft(double power, int timeMs) {
-        left_front.setPower(-power);
-        right_front.setPower(power);
-        left_back.setPower(-power);
-        right_back.setPower(power);
+        left_front.setPower(power);
+        right_front.setPower(-power);
+        left_back.setPower(power);
+        right_back.setPower(-power);
         sleep(timeMs);
         stopDriving();
     }
