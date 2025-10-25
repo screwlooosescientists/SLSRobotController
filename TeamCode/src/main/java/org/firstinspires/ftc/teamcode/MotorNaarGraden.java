@@ -1,11 +1,11 @@
-package org.firstinspires.ftc.teamcode.Solutions;
+package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-@TeleOp(name = "Motor naar graden", group = "TeleOp")
-public class Jasper_oefening_1 extends OpMode {
+@TeleOp(name = "Motor Naar Graden", group = "TeleOp")
+public class MotorNaarGraden extends OpMode {
 
     DcMotor motor;
     double targetDegrees = 0;
