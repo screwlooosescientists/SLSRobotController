@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 
 @Autonomous(name="Simple Autonomous", group="Autonomous")
-public class AutonomousTest extends LinearOpMode {
+public class AutonomousTestrood extends LinearOpMode {
 
     private DcMotor left_front = null;
     private DcMotor right_front = null;
@@ -34,8 +34,8 @@ public class AutonomousTest extends LinearOpMode {
         // Wacht op start
         waitForStart();
 
-        // Draai naar links
-        turnLeft(0.5, 1000);
+        // Draai naar rechts
+        turnRight(0.5, 1030);
 
         // Rijdt nog een beetje vooruit
         driveForward(0.5, 2000);
@@ -44,14 +44,7 @@ public class AutonomousTest extends LinearOpMode {
         telemetry.update();
     }
 
-    private void turnLeft(double power, int timeMs) {
-        left_front.setPower(power);
-        right_front.setPower(-power);
-        left_back.setPower(power);
-        right_back.setPower(-power);
-        sleep(timeMs);
-        stopDriving();
-    }
+
 
     // --- Hulpmethoden ---
     private void driveForward(double power, int timeMs) {
@@ -66,10 +59,10 @@ public class AutonomousTest extends LinearOpMode {
     }
 
     private void turnRight(double power, int timeMs) {
-        left_front.setPower(power);
-        right_front.setPower(-power);
-        left_back.setPower(power);
-        right_back.setPower(-power);
+        left_front.setPower(-power);
+        right_front.setPower(power);
+        left_back.setPower(-power);
+        right_back.setPower(power);
         sleep(timeMs);
         stopDriving();
     }
@@ -81,3 +74,4 @@ public class AutonomousTest extends LinearOpMode {
         right_back.setPower(0);
     }
 }
+
