@@ -11,7 +11,7 @@ public class MainTeleop extends LinearOpMode {
     private DcMotor rightfront = null;
     private DcMotor rightback = null;
     private DcMotor leftback = null;
-
+    private DcMotor katapult = null;
 
 
     @Override
@@ -39,6 +39,16 @@ public class MainTeleop extends LinearOpMode {
             rightfront.setPower(RightFront);
             rightback.setPower(RightBack);
             leftback.setPower(LeftBack);
+
+
         }
+    }
+
+    public DcMotor getKatapult() {
+        return katapult;
+    }
+
+    public void setKatapult(DcMotor katapult) {
+        this.katapult = katapult;
     }
 }
