@@ -20,9 +20,6 @@ public class Katapult extends LinearOpMode {
         katapultMotor.setDirection(DcMotor.Direction.REVERSE);
         katapultMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        // Servo startpositie
-        releaseServo.setPosition(SERVO_LOCK_POS);
-
         telemetry.addData("Status", "Gereed om te starten");
         telemetry.update();
 
