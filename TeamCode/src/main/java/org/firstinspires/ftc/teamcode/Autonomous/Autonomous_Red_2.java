@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 public class Autonomous_Red_2 extends LinearOpMode {
 
     private DcMotor left_front = null;
-    private DcMotor right_front = null;
+    private DcMotor right_front= null;
     private DcMotor right_back = null;
     private DcMotor left_back = null;
 
