@@ -9,14 +9,18 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 public class Autonomous_Blue_2 extends LinearOpMode {
 
     private DcMotor left_front = null;
-    private DcMotor right_front = null;
+    private DcMotor right_front= null;
     private DcMotor right_back = null;
     private DcMotor left_back = null;
+
+    private DcMotor katapult = null;
 
     // ---- Encoder instellingen ----
     static final double COUNTS_PER_MOTOR_REV = 1120;  // Pas aan aan jouw motor type
     static final double DRIVE_GEAR_REDUCTION = 1.0;
-    static final double WHEEL_DIAMETER_CM = 10.0;     // Jouw wiel diameter
+    static final double WHEEL_DIAMETER_CM = 7.5;     // Jouw wiel diameter
+
+
     static final double COUNTS_PER_CM = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
             (WHEEL_DIAMETER_CM * Math.PI);
 
@@ -27,18 +31,21 @@ public class Autonomous_Blue_2 extends LinearOpMode {
         right_front = hardwareMap.get(DcMotor.class, "right_front");
         left_back = hardwareMap.get(DcMotor.class, "left_back");
         right_back = hardwareMap.get(DcMotor.class, "right_back");
+        katapult = hardwareMap.get(DcMotor.class, "katapult");
 
         // Richtingen (pas aan indien nodig)
         left_front.setDirection(DcMotor.Direction.FORWARD);
         right_front.setDirection(DcMotor.Direction.REVERSE);
         left_back.setDirection(DcMotorSimple.Direction.REVERSE);
         right_back.setDirection(DcMotorSimple.Direction.FORWARD);
+        katapult.setDirection(DcMotorSimple.Direction.REVERSE);
 
         // Stop met rollen bij 0 power
         left_front.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         right_front.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         left_back.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         right_back.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        katapult.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         // Reset encoders
         resetEncoders();
@@ -48,22 +55,36 @@ public class Autonomous_Blue_2 extends LinearOpMode {
 
         waitForStart();
 
-        // Draai naar rechts (1 rotatie)
-        turnRight(0.5, 1.0);
 
         // Rijd vooruit (2 rotaties)
-        driveForward(0.5, 2.0);
+        driveForward(0.7, 2.0);
+
+        turnLeft(0.7,2.0);
+
+        Shoot(0.5, 1);
+
+
 
         telemetry.addData("Status", "Autonomous klaar");
         telemetry.update();
     }
 
     // --- Hulpfuncties ---
+
+    // vooruit rijden
     private void driveForward(double power, double rotations) {
         int moveCounts = (int)(rotations * COUNTS_PER_MOTOR_REV);
 
-        setTargetPosition(moveCounts, moveCounts, moveCounts, moveCounts);
+        // Links achteruit, rechts vooruit
+        setTargetPosition(-moveCounts, moveCounts, -moveCounts, moveCounts);
         runToPosition();
+
+        left_front.setPower(power);
+        right_front.setPower(power);
+        left_back.setPower(power);
+        right_back.setPower(power);
+        stopDriving();
+        runUsingEncoders();
 
         setPowerAll(power);
 
@@ -76,23 +97,34 @@ public class Autonomous_Blue_2 extends LinearOpMode {
         stopDriving();
         runUsingEncoders();
     }
-
-    private void turnRight(double power, double rotations) {
+    private void turnLeft(double power, double rotations) {
         int moveCounts = (int)(rotations * COUNTS_PER_MOTOR_REV);
-
         // Links achteruit, rechts vooruit
-        setTargetPosition(-moveCounts, moveCounts, -moveCounts, moveCounts);
+        setTargetPosition (-moveCounts, moveCounts, -moveCounts, moveCounts);
         runToPosition();
+
+        left_front.setPower(power);
+        right_front.setPower(power);
+        left_back.setPower(power);
+        right_back.setPower(power);
+        stopDriving();
+        runUsingEncoders();
 
         setPowerAll(power);
 
         while (opModeIsActive() && allMotorsBusy()) {
-            telemetry.addData("Beweging", "Rechtsom draaien");
+            telemetry.addData("Beweging", "Vooruit");
+            telemetry.addData("Positie", "LF: %d RF: %d", left_front.getCurrentPosition(), right_front.getCurrentPosition());
             telemetry.update();
         }
 
         stopDriving();
         runUsingEncoders();
+    }
+    //schieten
+    private void Shoot(double power, int timeMs) {
+        katapult.setPower(power);
+        sleep(timeMs);
     }
 
     private void stopDriving() {
