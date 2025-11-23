@@ -11,6 +11,7 @@ public class MainTeleop extends LinearOpMode {
     private DcMotor rightfront = null;
     private DcMotor rightback = null;
     private DcMotor leftback = null;
+    private DcMotor katapult = null;
 
 
 
@@ -23,6 +24,7 @@ public class MainTeleop extends LinearOpMode {
         rightfront = hardwareMap.get(DcMotor.class, "right_front");
         rightback = hardwareMap.get(DcMotor.class, "right_back");
         leftback = hardwareMap.get(DcMotor.class, "left_back");
+        katapult = hardwareMap.get(DcMotor.class, "katapult");
 
         waitForStart();
         while (opModeIsActive()) {
@@ -39,6 +41,8 @@ public class MainTeleop extends LinearOpMode {
             rightfront.setPower(RightFront);
             rightback.setPower(RightBack);
             leftback.setPower(LeftBack);
+
+            double
         }
     }
 }
