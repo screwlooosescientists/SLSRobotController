@@ -11,6 +11,7 @@ public class MainTeleop extends LinearOpMode {
     private DcMotor rightfront = null;
     private DcMotor rightback = null;
     private DcMotor leftback = null;
+    private DcMotor katapult = null;
 
 
     @Override
@@ -22,6 +23,7 @@ public class MainTeleop extends LinearOpMode {
         rightfront = hardwareMap.get(DcMotor.class, "right_front");
         rightback = hardwareMap.get(DcMotor.class, "right_back");
         leftback = hardwareMap.get(DcMotor.class, "left_back");
+        katapult = hardwareMap.get(DcMotor.class,"katapult" );
 
         waitForStart();
         while (opModeIsActive()) {
@@ -42,6 +44,14 @@ public class MainTeleop extends LinearOpMode {
             rightback.setPower(RightBack);
             leftback.setPower(LeftBack);
 
+            if (gamepad2.x) {
+                katapult.setPower(0.7); // volle kracht
+                telemetry.addData("Katapult", "Opwinden...");
+            } else {
+                katapult.setPower(0);   // stoppen
+            }
+
+            telemetry.update();
         }
     }
 }
