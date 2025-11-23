@@ -11,6 +11,7 @@ public class MainTeleop extends LinearOpMode {
     private DcMotor rightfront = null;
     private DcMotor rightback = null;
     private DcMotor leftback = null;
+    private DcMotor katapult = null;
 
 
 
@@ -23,6 +24,9 @@ public class MainTeleop extends LinearOpMode {
         rightfront = hardwareMap.get(DcMotor.class, "right_front");
         rightback = hardwareMap.get(DcMotor.class, "right_back");
         leftback = hardwareMap.get(DcMotor.class, "left_back");
+        katapult = hardwareMap.get(DcMotor.class, "katapult");
+        katapult.setDirection(DcMotor.Direction.REVERSE);
+        katapult.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         waitForStart();
         while (opModeIsActive()) {
@@ -30,15 +34,26 @@ public class MainTeleop extends LinearOpMode {
             double Powerleft_stick_x = gamepad1.left_stick_x;
             double Powerright_stick_x = -gamepad1.right_stick_x;
 
-            double LeftFront = Powerleft_stick_y - Powerleft_stick_x - Powerright_stick_x;
-            double LeftBack = Powerleft_stick_y + Powerleft_stick_x - Powerright_stick_x;
-            double RightFront = Powerleft_stick_y + Powerleft_stick_x + Powerright_stick_x;
-            double RightBack = Powerleft_stick_y - Powerleft_stick_x + Powerright_stick_x;
+            telemetry.addData("Status", "Gereed om te starten");
+
+            double LeftFront = - Powerleft_stick_y - Powerleft_stick_x - Powerright_stick_x;
+            double LeftBack = - Powerleft_stick_y + Powerleft_stick_x - Powerright_stick_x;
+            double RightFront = - Powerleft_stick_y + Powerleft_stick_x + Powerright_stick_x;
+            double RightBack = - Powerleft_stick_y - Powerleft_stick_x + Powerright_stick_x;
 
             leftfront.setPower(LeftFront);
             rightfront.setPower(RightFront);
             rightback.setPower(RightBack);
             leftback.setPower(LeftBack);
+
+            if (gamepad2.x) {
+                katapult.setPower(1.0); // volle kracht
+                telemetry.addData("Katapult", "Opwinden...");
+            } else {
+                katapult.setPower(0);   // stoppen
+            }
+
+            telemetry.update();
         }
     }
 }
