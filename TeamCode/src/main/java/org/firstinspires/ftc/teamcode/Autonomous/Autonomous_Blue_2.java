@@ -102,7 +102,7 @@ public class Autonomous_Blue_2 extends LinearOpMode {
         // Links achteruit, rechts vooruit
         setTargetPosition (-moveCounts, moveCounts, -moveCounts, moveCounts);
         runToPosition();
-
+p
         left_front.setPower(power);
         right_front.setPower(power);
         left_back.setPower(power);
