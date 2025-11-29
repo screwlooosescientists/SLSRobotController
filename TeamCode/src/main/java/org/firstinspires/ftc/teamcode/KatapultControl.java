@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
 @TeleOp(name="Katapult Control", group="TeleOp")
@@ -24,7 +25,7 @@ public class KatapultControl extends LinearOpMode {
         releaseServo = hardwareMap.get(Servo.class, "release_servo");
 
         // Richting en gedrag
-        katapultMotor.setDirection(DcMotor.Direction.BACKWARD);
+        katapultMotor.setDirection(DcMotor.Direction.REVERSE);
         katapultMotor2.setDirection(DcMotor.Direction.FORWARD);
         katapultMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
