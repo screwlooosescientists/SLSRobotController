@@ -3,6 +3,9 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Gamepad;
+
+import org.firstinspires.ftc.teamcode.Katapult;
 
 @TeleOp(name="Teleop", group="Decode")
 public class MainTeleop extends LinearOpMode {
@@ -12,7 +15,8 @@ public class MainTeleop extends LinearOpMode {
     private DcMotor rightback = null;
     private DcMotor leftback = null;
 
-
+    private Katapult Schieter = null;
+    private DcMotor SchietMotor = null;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -23,6 +27,9 @@ public class MainTeleop extends LinearOpMode {
         rightfront = hardwareMap.get(DcMotor.class, "right_front");
         rightback = hardwareMap.get(DcMotor.class, "right_back");
         leftback = hardwareMap.get(DcMotor.class, "left_back");
+        SchietMotor = hardwareMap.get(DcMotor.class, "katapult");
+
+        Schieter = new Katapult(SchietMotor);
 
         waitForStart();
         while (opModeIsActive()) {
@@ -39,6 +46,8 @@ public class MainTeleop extends LinearOpMode {
             rightfront.setPower(RightFront);
             rightback.setPower(RightBack);
             leftback.setPower(LeftBack);
+
+            Schieter.ShootKatapult(gamepad2.x);
         }
     }
 }
