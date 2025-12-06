@@ -34,7 +34,7 @@ public class MainTeleop extends LinearOpMode {
         WipMotor = hardwareMap.get(Servo.class, "Wipper");
 
         Schieter = new Katapult(SchietMotor, WipMotor);
-
+        drive = new Drive(leftfront, rightfront, rightback, leftback);
 
         waitForStart();
         while (opModeIsActive()) {
