@@ -39,7 +39,7 @@ public class GetTagLocationOpmode extends LinearOpMode {
 
         while (opModeIsActive()) {
 
-            AprilTagDetection tag = getTagPose(aprilTag, 3); // Example: Look for tag ID = 3
+            AprilTagDetection tag = getTagPose(aprilTag, 20); // Example: Look for tag ID = 3
 
             if (tag != null) {
                 Position p = tag.robotPose.getPosition();
