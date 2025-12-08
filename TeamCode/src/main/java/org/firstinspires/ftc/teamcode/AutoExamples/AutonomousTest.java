@@ -47,7 +47,7 @@ public class AutonomousTest extends LinearOpMode {
 
         // --- Initialize AprilTag ---
         aprilTag = new AprilTagProcessor.Builder()
-                .setCameraPose(
+                .setCameraPose( //todo check camera mounting
                         new Position(DistanceUnit.CM, 0, 0, 0, 0),
                         new YawPitchRollAngles(AngleUnit.DEGREES, 0, -90, 0, 0)
                 )
