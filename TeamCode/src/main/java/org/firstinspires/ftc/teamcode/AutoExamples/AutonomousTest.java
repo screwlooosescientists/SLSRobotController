@@ -92,12 +92,11 @@ public class AutonomousTest extends LinearOpMode {
                 telemetry.addData("angle rotated: ", -tag.robotPose.getOrientation().getYaw(AngleUnit.DEGREES) );
             }
 
+            //normalization of the vector
+            double max = Math.max(1.0, Math.abs(drivex) + Math.abs(drivey));
+            drivex /= max;
+            drivey /= max;
 
-            if(Math.abs(drivex + drivey) > 1)
-            {
-                drivex = drivex / (drivex + drivey);
-                drivey = drivey / (drivex + drivey);
-            }
 
             double Leftfrond = -(drivey - drivex);
             double Leftback = -(drivey + drivex);
