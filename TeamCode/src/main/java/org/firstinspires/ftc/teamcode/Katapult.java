@@ -12,16 +12,34 @@ public class Katapult {
     {
         this.Motor = motor;
         this.Wipper = wipper;
+        Motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        Motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 
     public void ShootKatapult(boolean fireButton)
     {
+        Motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         if(fireButton)
         {
             Motor.setPower(0.7);
         }
         else
         {
+            Motor.setPower(0);
+        }
+    }
+
+    public void LowerKatapult(boolean lowerButton, int position)
+    {
+        if(lowerButton)
+        {
+            Motor.setTargetPosition(position);
+            Motor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            Motor.setPower(0.7);
+        }
+        else
+        {
+            Motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             Motor.setPower(0);
         }
     }
