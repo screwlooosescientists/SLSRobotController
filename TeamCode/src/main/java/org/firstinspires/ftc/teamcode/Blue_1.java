@@ -267,7 +267,7 @@ public class Blue_1 extends LinearOpMode
                 telemetry.addData("Bearing","%3.0f degrees", desiredTag.ftcPose.bearing);
                 telemetry.addData("Yaw","%3.0f degrees", desiredTag.ftcPose.yaw);
             } else {
-                telemetry.addData("\n>","Drive using joysticks to find valid target\n");
+                telemetry.addData("\n>","Cant find the april tag\n");
             }
 
             // If Left Bumper is being pressed, AND we have found the desired target, Drive to target Automatically .
