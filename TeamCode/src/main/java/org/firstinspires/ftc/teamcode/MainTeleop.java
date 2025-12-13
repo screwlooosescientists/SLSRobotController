@@ -30,7 +30,7 @@ public class MainTeleop extends LinearOpMode {
         rightback = hardwareMap.get(DcMotor.class, "right_back");
         leftback = hardwareMap.get(DcMotor.class, "left_back");
         SchietMotor = hardwareMap.get(DcMotor.class, "katapult");
-        WipMotor = hardwareMap.get(Servo.class, "Wipper");
+
 
         Schieter = new Katapult(SchietMotor, WipMotor);
 
