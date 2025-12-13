@@ -16,7 +16,7 @@ public class MainTeleop extends LinearOpMode {
     private DcMotor rightback = null;
     private DcMotor leftback = null;
     private Drive drive = null;
-
+ 
     private Katapult Schieter = null;
     private DcMotor SchietMotor = null;
     private Servo WipMotor = null;
@@ -31,10 +31,10 @@ public class MainTeleop extends LinearOpMode {
         rightback = hardwareMap.get(DcMotor.class, "right_back");
         leftback = hardwareMap.get(DcMotor.class, "left_back");
         SchietMotor = hardwareMap.get(DcMotor.class, "katapult");
-
+        WipMotor = hardwareMap.get(Servo.class, "Wipper");
 
         Schieter = new Katapult(SchietMotor, WipMotor);
-
+        drive = new Drive(leftfront, rightfront, rightback, leftback);
 
         waitForStart();
         while (opModeIsActive()) {
@@ -46,11 +46,14 @@ public class MainTeleop extends LinearOpMode {
 
             if(gamepad2.dpad_down)
             {
-                Schieter.LowerKatapult(true, 216);
+                Schieter.LowerKatapult(true, 180);
             }else{
                 Schieter.ShootKatapult(gamepad2.x);
             }
             Schieter.Laden(gamepad2.triangle);
+
+            telemetry.addData("Motor pos", SchietMotor.getCurrentPosition());
+            telemetry.update();
         }
     }
 }

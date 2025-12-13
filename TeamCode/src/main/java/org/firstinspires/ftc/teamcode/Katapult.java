@@ -26,16 +26,18 @@ public class Katapult {
         else
         {
             Motor.setPower(0);
+            Motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         }
     }
 
     public void LowerKatapult(boolean lowerButton, int position)
     {
+
         if(lowerButton)
         {
             Motor.setTargetPosition(position);
             Motor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            Motor.setPower(0.7);
+            Motor.setPower(1);
         }
         else
         {
@@ -48,11 +50,11 @@ public class Katapult {
     {
         if(wipen)
         {
-            Wipper.setPosition(1);
+            Wipper.setPosition(0.6);
         }
         else
         {
-            Wipper.setPosition(0);
+            Wipper.setPosition(0.2);
         }
     }
 }
