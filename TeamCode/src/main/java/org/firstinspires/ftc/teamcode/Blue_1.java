@@ -76,17 +76,6 @@ public class Blue_1 extends LinearOpMode
         // Initialize the Apriltag Detection process
         initAprilTag();
 
-        // Initialize the hardware variables. Note that the strings used here as parameters
-        // to 'get' must match the names assigned during the robot configuration.
-        // step (using the FTC Robot Controller app on the phone).
-
-        /*
-        leftfront = hardwareMap.get(DcMotor.class, "left_front");
-        rightfront = hardwareMap.get(DcMotor.class, "right_front");
-        rightback = hardwareMap.get(DcMotor.class, "right_back");
-        leftback = hardwareMap.get(DcMotor.class, "left_back");
-         */
-
         frontLeftDrive = hardwareMap.get(DcMotor.class, "left_front");
         frontRightDrive = hardwareMap.get(DcMotor.class, "right_front");
         backLeftDrive = hardwareMap.get(DcMotor.class, "left_back");
@@ -96,9 +85,8 @@ public class Blue_1 extends LinearOpMode
         WipMotor = hardwareMap.get(Servo.class, "Wipper");
 
         Schieter = new Katapult(SchietMotor, WipMotor);
-        // To drive forward, most robots need the motor on one side to be reversed, because the axles point in opposite directions.
-        // When run, this OpMode should start both motors driving forward. So adjust these two lines based on your first test drive.
-        // Note: The settings here assume direct drive on left and right wheels.  Gear Reduction or 90 Deg drives may require direction flips
+
+
         frontLeftDrive.setDirection(DcMotor.Direction.REVERSE);
         backLeftDrive.setDirection(DcMotor.Direction.REVERSE);
         frontRightDrive.setDirection(DcMotor.Direction.FORWARD);
@@ -112,15 +100,16 @@ public class Blue_1 extends LinearOpMode
         telemetry.update();
         waitForStart();
 
+        //Here goes the autonomous program
+
         driveToTag();
 
-        //TODO drive to start pos
         while (opModeIsActive())
         {
             Schieter.ShootKatapult(true);
         }
 
-        }
+    }
 
 
     /**
