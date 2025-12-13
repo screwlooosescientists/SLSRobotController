@@ -45,46 +45,6 @@ import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-/*
- * This OpMode illustrates using a camera to locate and drive towards a specific AprilTag.
- * The code assumes a Holonomic (Mecanum or X Drive) Robot.
- *
- * For an introduction to AprilTags, see the ftc-docs link below:
- * https://ftc-docs.firstinspires.org/en/latest/apriltag/vision_portal/apriltag_intro/apriltag-intro.html
- *
- * When an AprilTag in the TagLibrary is detected, the SDK provides location and orientation of the tag, relative to the camera.
- * This information is provided in the "ftcPose" member of the returned "detection", and is explained in the ftc-docs page linked below.
- * https://ftc-docs.firstinspires.org/apriltag-detection-values
- *
- * The drive goal is to rotate to keep the Tag centered in the camera, while strafing to be directly in front of the tag, and
- * driving towards the tag to achieve the desired distance.
- * To reduce any motion blur (which will interrupt the detection process) the Camera exposure is reduced to a very low value (5mS)
- * You can determine the best Exposure and Gain values by using the ConceptAprilTagOptimizeExposure OpMode in this Samples folder.
- *
- * The code assumes a Robot Configuration with motors named: front_left_drive and front_right_drive, back_left_drive and back_right_drive.
- * The motor directions must be set so a positive power goes forward on all wheels.
- * This sample assumes that the current game AprilTag Library (usually for the current season) is being loaded by default,
- * so you should choose to approach a valid tag ID.
- *
- * Under manual control, the left stick will move forward/back & left/right.  The right stick will rotate the robot.
- * Manually drive the robot until it displays Target data on the Driver Station.
- *
- * Press and hold the *Left Bumper* to enable the automatic "Drive to target" mode.
- * Release the Left Bumper to return to manual driving mode.
- *
- * Under "Drive To Target" mode, the robot has three goals:
- * 1) Turn the robot to always keep the Tag centered on the camera frame. (Use the Target Bearing to turn the robot.)
- * 2) Strafe the robot towards the centerline of the Tag, so it approaches directly in front  of the tag.  (Use the Target Yaw to strafe the robot)
- * 3) Drive towards the Tag to get to the desired distance.  (Use Tag Range to drive the robot forward/backward)
- *
- * Use DESIRED_DISTANCE to set how close you want the robot to get to the target.
- * Speed and Turn sensitivity can be adjusted using the SPEED_GAIN, STRAFE_GAIN and TURN_GAIN constants.
- *
- * Use Android Studio to Copy this Class, and Paste it into the TeamCode/src/main/java/org/firstinspires/ftc/teamcode folder.
- * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list.
- *
- */
-
 @Autonomous(name="Blue1", preselectTeleOp = "teleop")
 public class Blue_1 extends LinearOpMode
 {
