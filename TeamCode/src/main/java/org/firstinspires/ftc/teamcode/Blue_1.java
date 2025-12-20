@@ -60,6 +60,7 @@ public class Blue_1 extends LinearOpMode
     private DcMotor backRightDrive = null;  //  Used to control the right back drive wheel
 
     private static final boolean USE_WEBCAM = true;  // Set true to use a webcam, or false for a phone camera
+    //TODO id instellen
     private static final int DESIRED_TAG_ID = 20;     // Choose the tag you want to approach or set to -1 for ANY tag.
     private VisionPortal visionPortal;               // Used to manage the video source.
     private AprilTagProcessor aprilTag;              // Used for managing the AprilTag detection process.
@@ -101,16 +102,16 @@ public class Blue_1 extends LinearOpMode
         telemetry.update();
         waitForStart();
 
-        //Here goes the autonomous program
-
+        //TODO Here goes the autonomous program
         driveToTag();
 
-        for(int i = 0; i < 3; i++)
-        {
-            Schieter.ShootKatapult(true);
-        }
+        //TODO schiet
+
+        //TODO rij naar volgende plek
+
 
         Drive.DriveForward(1);
+        Drive.DriveForward(-1);
 
 
     }

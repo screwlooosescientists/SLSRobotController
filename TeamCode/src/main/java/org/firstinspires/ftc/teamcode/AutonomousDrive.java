@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import static org.firstinspires.ftc.teamcode.AutonomousDrive.*;
+import static org.firstinspires.ftc.teamcode.Data.AutonomousConfiguration.MAX_AUTO_SPEED;
 import static org.firstinspires.ftc.teamcode.Data.AutonomousConfiguration.TicksPerRev;
 
 public class AutonomousDrive {
@@ -36,24 +37,24 @@ public class AutonomousDrive {
         backRightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         frontLeftDrive.setTargetPosition(-(int)(rotations * TicksPerRev));
-        frontRightDrive.setTargetPosition((int)(rotations * TicksPerRev));
+        frontRightDrive.setTargetPosition(-(int)(rotations * TicksPerRev));
         backLeftDrive.setTargetPosition(-(int)(rotations * TicksPerRev));
-        backRightDrive.setTargetPosition((int)(rotations * TicksPerRev));
+        backRightDrive.setTargetPosition(-(int)(rotations * TicksPerRev));
 
         frontLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         frontRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         backRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         backLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-    }
 
-    public void DriveBackward(double rotations)
-    {
-        frontLeftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        frontRightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        backLeftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        backRightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        backRightDrive.setPower(MAX_AUTO_SPEED);
+        frontRightDrive.setPower(MAX_AUTO_SPEED);
+        backLeftDrive.setPower(MAX_AUTO_SPEED);
+        frontLeftDrive.setPower(MAX_AUTO_SPEED);
 
+        while((frontRightDrive.isBusy() || frontLeftDrive.isBusy() || backLeftDrive.isBusy() || backRightDrive.isBusy()))
+        {
 
+        }
     }
 
     public void DriveLeft(double rotations)
@@ -62,6 +63,23 @@ public class AutonomousDrive {
         frontRightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         backLeftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         backRightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        frontLeftDrive.setTargetPosition(-(int)(rotations * TicksPerRev));
+        frontRightDrive.setTargetPosition(-(int)(rotations * TicksPerRev));
+        backLeftDrive.setTargetPosition(-(int)(rotations * TicksPerRev));
+        backRightDrive.setTargetPosition(-(int)(rotations * TicksPerRev));
+
+        frontLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        frontRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        backRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        backLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        backRightDrive.setPower(MAX_AUTO_SPEED);
+        frontRightDrive.setPower(MAX_AUTO_SPEED);
+        backLeftDrive.setPower(MAX_AUTO_SPEED);
+        frontLeftDrive.setPower(MAX_AUTO_SPEED);
+
+        while((frontRightDrive.isBusy() || frontLeftDrive.isBusy() || backLeftDrive.isBusy() || backRightDrive.isBusy()));
 
     }
 
@@ -72,6 +90,23 @@ public class AutonomousDrive {
         backLeftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         backRightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
+        frontLeftDrive.setTargetPosition(-(int)(rotations * TicksPerRev));
+        frontRightDrive.setTargetPosition(-(int)(rotations * TicksPerRev));
+        backLeftDrive.setTargetPosition(-(int)(rotations * TicksPerRev));
+        backRightDrive.setTargetPosition(-(int)(rotations * TicksPerRev));
+
+        frontLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        frontRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        backRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        backLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        backRightDrive.setPower(MAX_AUTO_SPEED);
+        frontRightDrive.setPower(MAX_AUTO_SPEED);
+        backLeftDrive.setPower(MAX_AUTO_SPEED);
+        frontLeftDrive.setPower(MAX_AUTO_SPEED);
+
+        while((frontRightDrive.isBusy() || frontLeftDrive.isBusy() || backLeftDrive.isBusy() || backRightDrive.isBusy()));
+
 
     }
 
@@ -81,6 +116,23 @@ public class AutonomousDrive {
         frontRightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         backLeftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         backRightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        frontLeftDrive.setTargetPosition(-(int)(rotations * TicksPerRev));
+        frontRightDrive.setTargetPosition(-(int)(rotations * TicksPerRev));
+        backLeftDrive.setTargetPosition(-(int)(rotations * TicksPerRev));
+        backRightDrive.setTargetPosition(-(int)(rotations * TicksPerRev));
+
+        frontLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        frontRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        backRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        backLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        backRightDrive.setPower(MAX_AUTO_SPEED);
+        frontRightDrive.setPower(MAX_AUTO_SPEED);
+        backLeftDrive.setPower(MAX_AUTO_SPEED);
+        frontLeftDrive.setPower(MAX_AUTO_SPEED);
+
+        while((frontRightDrive.isBusy() || frontLeftDrive.isBusy() || backLeftDrive.isBusy() || backRightDrive.isBusy()));
 
 
     }
