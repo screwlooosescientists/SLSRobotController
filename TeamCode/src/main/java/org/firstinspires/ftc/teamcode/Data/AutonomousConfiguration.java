@@ -11,7 +11,7 @@ public class AutonomousConfiguration {
     public static final double TURN_GAIN   =  0.015  ;   //  Turn Control "Gain".
 
     //Max speeds
-    public static final double MAX_AUTO_SPEED = 0.7;   //  Clip the approach speed to this max value
+    public static final double MAX_AUTO_SPEED = 0.7  ;   //  Clip the approach speed to this max value
     public static final double MAX_AUTO_STRAFE= 0.7;   //  Clip the strafing speed to this max value
     public static final double MAX_AUTO_TURN  = 0.4;   //  Clip the turn speed to this max value
 

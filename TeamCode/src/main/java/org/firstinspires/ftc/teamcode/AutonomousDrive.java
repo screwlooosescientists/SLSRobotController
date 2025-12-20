@@ -65,9 +65,9 @@ public class AutonomousDrive {
         backRightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         frontLeftDrive.setTargetPosition(-(int)(rotations * TicksPerRev));
-        frontRightDrive.setTargetPosition(-(int)(rotations * TicksPerRev));
+        frontRightDrive.setTargetPosition((int)(rotations * TicksPerRev));
         backLeftDrive.setTargetPosition(-(int)(rotations * TicksPerRev));
-        backRightDrive.setTargetPosition(-(int)(rotations * TicksPerRev));
+        backRightDrive.setTargetPosition((int)(rotations * TicksPerRev));
 
         frontLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         frontRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -90,9 +90,9 @@ public class AutonomousDrive {
         backLeftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         backRightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-        frontLeftDrive.setTargetPosition(-(int)(rotations * TicksPerRev));
+        frontLeftDrive.setTargetPosition((int)(rotations * TicksPerRev));
         frontRightDrive.setTargetPosition(-(int)(rotations * TicksPerRev));
-        backLeftDrive.setTargetPosition(-(int)(rotations * TicksPerRev));
+        backLeftDrive.setTargetPosition((int)(rotations * TicksPerRev));
         backRightDrive.setTargetPosition(-(int)(rotations * TicksPerRev));
 
         frontLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -118,9 +118,9 @@ public class AutonomousDrive {
         backRightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         frontLeftDrive.setTargetPosition(-(int)(rotations * TicksPerRev));
-        frontRightDrive.setTargetPosition(-(int)(rotations * TicksPerRev));
+        frontRightDrive.setTargetPosition((int)(rotations * TicksPerRev));
         backLeftDrive.setTargetPosition(-(int)(rotations * TicksPerRev));
-        backRightDrive.setTargetPosition(-(int)(rotations * TicksPerRev));
+        backRightDrive.setTargetPosition((int)(rotations * TicksPerRev));
 
         frontLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         frontRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
