@@ -2,6 +2,9 @@ package org.firstinspires.ftc.teamcode.Data;
 
 public class AutonomousConfiguration {
 
+    //encoderticks per rotation
+    public static final double TicksPerRev = 1120;
+
     //Proportional gains, (output is proportional to the error)
     public static final double SPEED_GAIN  =  0.025  ;   //  Forward Speed Control "Gain"
     public static final double STRAFE_GAIN =  0.02 ;   //  Strafe Speed Control "Gain".

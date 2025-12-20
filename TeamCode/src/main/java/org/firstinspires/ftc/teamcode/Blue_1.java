@@ -45,6 +45,7 @@ import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import static org.firstinspires.ftc.teamcode.AutonomousDrive.*;
 import static org.firstinspires.ftc.teamcode.Data.AutonomousConfiguration.*;
 
 @Autonomous(name="Blue1", preselectTeleOp = "teleop")
@@ -68,7 +69,7 @@ public class Blue_1 extends LinearOpMode
     private Katapult Schieter = null;
     private DcMotor SchietMotor = null;
     private Servo WipMotor = null;
-
+    private AutonomousDrive Drive = null;
 
 
     @Override public void runOpMode()
@@ -85,7 +86,7 @@ public class Blue_1 extends LinearOpMode
         WipMotor = hardwareMap.get(Servo.class, "Wipper");
 
         Schieter = new Katapult(SchietMotor, WipMotor);
-
+        Drive = new AutonomousDrive(frontLeftDrive, frontRightDrive, backRightDrive, backLeftDrive);
 
         frontLeftDrive.setDirection(DcMotor.Direction.REVERSE);
         backLeftDrive.setDirection(DcMotor.Direction.REVERSE);
@@ -104,10 +105,13 @@ public class Blue_1 extends LinearOpMode
 
         driveToTag();
 
-        while (opModeIsActive())
+        for(int i = 0; i < 3; i++)
         {
             Schieter.ShootKatapult(true);
         }
+
+        Drive.DriveForward(1);
+
 
     }
 
