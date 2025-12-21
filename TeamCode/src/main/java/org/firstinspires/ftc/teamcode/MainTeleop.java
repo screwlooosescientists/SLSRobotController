@@ -45,7 +45,7 @@ public class MainTeleop extends LinearOpMode {
             drive.drive(Powerleft_stick_y, Powerleft_stick_x, Powerright_stick_x);
 
             Schieter.ShootKatapult(gamepad2.x);
-            Schieter.Laden(gamepad2.triangle);
+            Schieter.Laden(gamepad2.left_bumper);
         }
     }
 }
