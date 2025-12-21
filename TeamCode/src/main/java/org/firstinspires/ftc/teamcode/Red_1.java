@@ -48,7 +48,7 @@ import java.util.concurrent.TimeUnit;
 import static org.firstinspires.ftc.teamcode.AutonomousDrive.*;
 import static org.firstinspires.ftc.teamcode.Data.AutonomousConfiguration.*;
 
-@Autonomous(name="Blue1", preselectTeleOp = "teleop")
+@Autonomous(name="Red_1", preselectTeleOp = "MainTeleop.java")
 public class Red_1 extends LinearOpMode
 {
     // Adjust these numbers to suit your robot.
@@ -60,7 +60,6 @@ public class Red_1 extends LinearOpMode
     private DcMotor backRightDrive = null;  //  Used to control the right back drive wheel
 
     private static final boolean USE_WEBCAM = true;  // Set true to use a webcam, or false for a phone camera
-    //TODO id instellen
     private static final int DESIRED_TAG_ID = 24;     // Choose the tag you want to approach or set to -1 for ANY tag.
     private VisionPortal visionPortal;               // Used to manage the video source.
     private AprilTagProcessor aprilTag;              // Used for managing the AprilTag detection process.
@@ -103,21 +102,10 @@ public class Red_1 extends LinearOpMode
         waitForStart();
 
         //TODO Here goes the autonomous program
-//        driveToTag();
-//
-//        //TODO schiet
-//
-//        //TODO rij naar volgende plek
-//
-//
-//        Drive.DriveForward(1);
-//        Drive.DriveForward(-1);
-//        Drive.DriveLeft(1);
-//        Drive.DriveLeft(-1);
-//        Drive.DriveRight(1);
-//        Drive.DriveRight(-1);
-        Drive.Turn(1);
-        Drive.Turn(-1);
+        driveToTag();
+        //TODO schiet
+        Drive.DriveRight(1);
+        Drive.DriveForward(-4);
 
     }
 
