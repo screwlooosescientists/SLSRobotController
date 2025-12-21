@@ -79,7 +79,10 @@ public class AutonomousDrive {
         backLeftDrive.setPower(MAX_AUTO_SPEED);
         frontLeftDrive.setPower(MAX_AUTO_SPEED);
 
-        while((frontRightDrive.isBusy() || frontLeftDrive.isBusy() || backLeftDrive.isBusy() || backRightDrive.isBusy()));
+        while((frontRightDrive.isBusy() || frontLeftDrive.isBusy() || backLeftDrive.isBusy() || backRightDrive.isBusy()))
+        {
+
+        }
 
     }
 
@@ -105,7 +108,10 @@ public class AutonomousDrive {
         backLeftDrive.setPower(MAX_AUTO_SPEED);
         frontLeftDrive.setPower(MAX_AUTO_SPEED);
 
-        while((frontRightDrive.isBusy() || frontLeftDrive.isBusy() || backLeftDrive.isBusy() || backRightDrive.isBusy()));
+        while((frontRightDrive.isBusy() || frontLeftDrive.isBusy() || backLeftDrive.isBusy() || backRightDrive.isBusy()))
+        {
+
+        }
 
 
     }
@@ -132,7 +138,10 @@ public class AutonomousDrive {
         backLeftDrive.setPower(MAX_AUTO_SPEED);
         frontLeftDrive.setPower(MAX_AUTO_SPEED);
 
-        while((frontRightDrive.isBusy() || frontLeftDrive.isBusy() || backLeftDrive.isBusy() || backRightDrive.isBusy()));
+        while((frontRightDrive.isBusy() || frontLeftDrive.isBusy() || backLeftDrive.isBusy() || backRightDrive.isBusy()))
+        {
+
+        }
 
 
     }
