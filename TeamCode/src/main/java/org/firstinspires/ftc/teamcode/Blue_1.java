@@ -103,19 +103,19 @@ public class Blue_1 extends LinearOpMode
         waitForStart();
 
         //TODO Here goes the autonomous program
-//        driveToTag();
-//
-//        //TODO schiet
-//
-//        //TODO rij naar volgende plek
-//
-//
-//        Drive.DriveForward(1);
-//        Drive.DriveForward(-1);
-//        Drive.DriveLeft(1);
-//        Drive.DriveLeft(-1);
-//        Drive.DriveRight(1);
-//        Drive.DriveRight(-1);
+        driveToTag();
+
+        //TODO schiet
+
+        //TODO rij naar volgende plek
+
+
+        Drive.DriveForward(1);
+        Drive.DriveForward(-1);
+        Drive.DriveLeft(1);
+        Drive.DriveLeft(-1);
+        Drive.DriveRight(1);
+        Drive.DriveRight(-1);
         Drive.Turn(1);
         Drive.Turn(-1);
 
