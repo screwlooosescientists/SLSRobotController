@@ -52,7 +52,7 @@ import static org.firstinspires.ftc.teamcode.Data.AutonomousConfiguration.*;
 public class Red_1 extends LinearOpMode
 {
     // Adjust these numbers to suit your robot.
-    final double DESIRED_DISTANCE = 85; //  this is how close the camera should get to the target (inches)
+    final double DESIRED_DISTANCE = 60; //  this is how close the camera should get to the target (inches)
 
     private DcMotor frontLeftDrive = null;  //  Used to control the left front drive wheel
     private DcMotor frontRightDrive = null;  //  Used to control the right front drive wheel
@@ -103,9 +103,13 @@ public class Red_1 extends LinearOpMode
 
         //TODO Here goes the autonomous program
         driveToTag();
-        //TODO schiet
+        for(int i = 0; i < 3; i++)
+        {
+            Schieter.Tak(); //TAK! TAK! TAK! (3x schieten)
+
+        }
         Drive.DriveRight(1);
-        Drive.DriveForward(-4);
+        Drive.DriveForward(-5);
 
     }
 
