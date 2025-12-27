@@ -44,25 +44,45 @@ public class DcMotorSLS {
     // Public API
     // -----------------------------
 
+    /**
+     * Set PID gains
+     * @param p PID proportional gain
+     * @param i PID integral gain
+     * @param d PID derivative gain
+     */
     public void setPID(double p, double i, double d) {
         this.kP = p;
         this.kI = i;
         this.kD = d;
     }
 
+    /**
+     * Set tolerance in ticks
+     * @param ticks Tolerance in ticks
+     */
     public void setTolerance(int ticks) {
         this.tolerance = ticks;
     }
 
+    /**
+     * Set target position in ticks
+     * @param target Target position in ticks
+     */
     public void setTargetPosition(int target) {
         this.targetPosition = target;
     }
 
+    /**
+     * @return True if the motor is at the target position
+     */
     public boolean atTarget() {
         int error = targetPosition - Encoder.getCurrentPosition();
         return Math.abs(error) < tolerance;
     }
 
+    /**
+     * Enable PID control
+     */
     public void enablePID() {
         if (running) return;
 
@@ -91,6 +111,9 @@ public class DcMotorSLS {
         pidThread.start();
     }
 
+    /**
+     * Disable PID control
+     */
     public void disablePID() {
         running = false;
         if (pidThread != null) {
