@@ -31,6 +31,32 @@ public class Katapult {
         }
     }
 
+    public void OpenWipper(int stage)
+    {
+        switch (stage)
+        {
+            case 0:
+
+                Wipper.setPosition(1);
+                WipperOG.setPosition(1);
+
+                break;
+            case 1:
+
+                Wipper.setPosition(0.7);
+                WipperOG.setPosition(1);
+
+                break;
+
+            case 2:
+
+                Wipper.setPosition(0.7);
+                WipperOG.setPosition(0.7);
+
+                break;
+        }
+    }
+
     /**
      * Shoots the catapult once
      */
