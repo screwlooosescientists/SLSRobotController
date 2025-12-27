@@ -52,7 +52,7 @@ import static org.firstinspires.ftc.teamcode.Data.AutonomousConfiguration.*;
 public class Blue_1 extends LinearOpMode
 {
     // Adjust these numbers to suit your robot.
-    final double DESIRED_DISTANCE = 85; //  this is how close the camera should get to the target (inches)
+    final double DESIRED_DISTANCE = 50; //  this is how close the camera should get to the target (inches)
 
     private DcMotor frontLeftDrive = null;  //  Used to control the left front drive wheel
     private DcMotor frontRightDrive = null;  //  Used to control the right front drive wheel
@@ -106,22 +106,22 @@ public class Blue_1 extends LinearOpMode
         telemetry.update();
         waitForStart();
 
-        //TODO Here goes the autonomous program
+//TODO Here goes the autonomous program
+
+        SchietMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         driveToTag();
+        Schieter.Tak(0); //TAK! TAK! TAK! (3x schieten)
+        for(int i = 1; i < 3; i++)
+        {
+            SchietMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            Schieter.LowerKatapult(true, 180 );
+            Schieter.OpenWipper(i);
+            waitSecondsNonBlocking(3, this);
+            Schieter.Tak(i);
 
-        //TODO schiet
-
-        //TODO rij naar volgende plek
-
-
-        Drive.DriveForward(1);
-        Drive.DriveForward(-1);
-        Drive.DriveLeft(1);
-        Drive.DriveLeft(-1);
-        Drive.DriveRight(1);
-        Drive.DriveRight(-1);
-        Drive.Turn(1);
-        Drive.Turn(-1);
+        }
+        Drive.DriveRight(-0.5);
+        Drive.DriveForward(-5);
 
     }
 
@@ -238,7 +238,7 @@ public class Blue_1 extends LinearOpMode
 
 
         double totalError = 1000;
-        while (Math.abs(totalError) > 3 && opModeIsActive())
+        while (Math.abs(totalError) > 2 && opModeIsActive())
         {
             targetFound = false;
             desiredTag  = null;
@@ -304,6 +304,15 @@ public class Blue_1 extends LinearOpMode
             moveRobot(drive, strafe, turn);
             sleep(10);
             telemetry.update();
+        }
+        moveRobot(0, 0, 0);
+    }
+
+    public void waitSecondsNonBlocking(double seconds, LinearOpMode opMode) {
+        double startTime = opMode.getRuntime();
+        while (opMode.opModeIsActive() && (opMode.getRuntime() - startTime) < seconds) {
+            // Let the loop breathe
+            opMode.idle();
         }
     }
 }

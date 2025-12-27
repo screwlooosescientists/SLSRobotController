@@ -53,7 +53,7 @@ import static org.firstinspires.ftc.teamcode.Data.AutonomousConfiguration.*;
 public class Red_1 extends LinearOpMode
 {
     // Adjust these numbers to suit your robot.
-    final double DESIRED_DISTANCE = 60; //  this is how close the camera should get to the target (inches)
+    final double DESIRED_DISTANCE = 50; //  this is how close the camera should get to the target (inches)
 
     private DcMotor frontLeftDrive = null;  //  Used to control the left front drive wheel
     private DcMotor frontRightDrive = null;  //  Used to control the right front drive wheel
@@ -121,7 +121,7 @@ public class Red_1 extends LinearOpMode
             Schieter.Tak(i);
 
         }
-        Drive.DriveRight(1);
+        Drive.DriveRight(0.5);
         Drive.DriveForward(-5);
 
     }
@@ -239,7 +239,7 @@ public class Red_1 extends LinearOpMode
 
 
         double totalError = 1000;
-        while (Math.abs(totalError) > 1 && opModeIsActive()) //TODO tune strictnes
+        while (Math.abs(totalError) > 2 && opModeIsActive()) //TODO tune strictnes
         {
             targetFound = false;
             desiredTag  = null;
