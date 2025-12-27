@@ -33,6 +33,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.BuiltinCameraDirection;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
@@ -52,7 +53,7 @@ import static org.firstinspires.ftc.teamcode.Data.AutonomousConfiguration.*;
 public class Red_1 extends LinearOpMode
 {
     // Adjust these numbers to suit your robot.
-    final double DESIRED_DISTANCE = 60; //  this is how close the camera should get to the target (inches)
+    final double DESIRED_DISTANCE = 50; //  this is how close the camera should get to the target (inches)
 
     private DcMotor frontLeftDrive = null;  //  Used to control the left front drive wheel
     private DcMotor frontRightDrive = null;  //  Used to control the right front drive wheel
@@ -72,6 +73,9 @@ public class Red_1 extends LinearOpMode
     private Servo WipMotor = null;
     private Servo WipMotorOg = null;
     private AutonomousDrive Drive = null;
+
+    ElapsedTime delayTimer = new ElapsedTime();
+    boolean delayActive = false;
 
 
     @Override public void runOpMode()
@@ -104,13 +108,20 @@ public class Red_1 extends LinearOpMode
         waitForStart();
 
         //TODO Here goes the autonomous program
+
+        SchietMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         driveToTag();
-        for(int i = 0; i < 3; i++)
+        Schieter.Tak(0); //TAK! TAK! TAK! (3x schieten)
+        for(int i = 1; i < 3; i++)
         {
-            Schieter.Tak(); //TAK! TAK! TAK! (3x schieten)
+            SchietMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            Schieter.LowerKatapult(true, 180 );
+            Schieter.OpenWipper(i);
+            waitSecondsNonBlocking(3, this);
+            Schieter.Tak(i);
 
         }
-        Drive.DriveRight(1);
+        Drive.DriveRight(0.5);
         Drive.DriveForward(-5);
 
     }
@@ -228,7 +239,7 @@ public class Red_1 extends LinearOpMode
 
 
         double totalError = 1000;
-        while (Math.abs(totalError) > 3 && opModeIsActive())
+        while (Math.abs(totalError) > 2 && opModeIsActive()) //TODO tune strictnes
         {
             targetFound = false;
             desiredTag  = null;
@@ -295,7 +306,18 @@ public class Red_1 extends LinearOpMode
             sleep(10);
             telemetry.update();
         }
+        moveRobot(0, 0, 0);
     }
+
+    public void waitSecondsNonBlocking(double seconds, LinearOpMode opMode) {
+        double startTime = opMode.getRuntime();
+        while (opMode.opModeIsActive() && (opMode.getRuntime() - startTime) < seconds) {
+            // Let the loop breathe
+            opMode.idle();
+        }
+    }
+
+
 }
 
 
