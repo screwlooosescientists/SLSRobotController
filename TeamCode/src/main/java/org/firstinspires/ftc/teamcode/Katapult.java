@@ -86,15 +86,15 @@ public class Katapult {
                 break;
             case 1:
 
-                Wipper.setPosition(0.5);
+                Wipper.setPosition(0.7);
                 WipperOG.setPosition(1);
 
                 break;
 
             case 2:
 
-                Wipper.setPosition(0.5);
-                WipperOG.setPosition(0.5);
+                Wipper.setPosition(0.7);
+                WipperOG.setPosition(0.7);
 
                 break;
         }
