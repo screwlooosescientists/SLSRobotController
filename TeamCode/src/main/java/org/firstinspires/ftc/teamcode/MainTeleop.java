@@ -19,7 +19,13 @@ public class MainTeleop extends LinearOpMode {
  
     private Katapult Schieter = null;
     private DcMotor SchietMotor = null;
+    private DcMotor SchietMotor2 = null;
     private Servo WipMotor = null;
+    private Servo WipMotorOg = null;
+
+    //vars
+    int stage = 0;
+    boolean leftbumbperIsPressed;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -31,9 +37,11 @@ public class MainTeleop extends LinearOpMode {
         rightback = hardwareMap.get(DcMotor.class, "right_back");
         leftback = hardwareMap.get(DcMotor.class, "left_back");
         SchietMotor = hardwareMap.get(DcMotor.class, "katapult");
+        SchietMotor2 = hardwareMap.get(DcMotor.class, "KatapultOG" );
         WipMotor = hardwareMap.get(Servo.class, "Wipper");
+        WipMotorOg = hardwareMap.get(Servo.class, "wipperOG");
 
-        Schieter = new Katapult(SchietMotor, WipMotor);
+        Schieter = new Katapult(SchietMotor,SchietMotor2 , WipMotor, WipMotorOg);
         drive = new Drive(leftfront, rightfront, rightback, leftback);
 
         waitForStart();
@@ -44,15 +52,44 @@ public class MainTeleop extends LinearOpMode {
 
             drive.drive(Powerleft_stick_y, Powerleft_stick_x, Powerright_stick_x);
 
-            if(gamepad2.dpad_down)
+            if(gamepad2.right_bumper)
             {
-                Schieter.LowerKatapult(true, 180);
-            }else{
-                Schieter.ShootKatapult(gamepad2.x);
+                Schieter.LowerKatapult( true, 180); //todo get correct point
             }
-            Schieter.Laden(gamepad2.triangle);
+            else if (gamepad2.right_trigger != 0){
+                Schieter.ShootKatapult(gamepad2.right_trigger);
 
-            telemetry.addData("Motor pos", SchietMotor.getCurrentPosition());
+            }
+            else {
+                SchietMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                SchietMotor2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            }
+
+
+            if(gamepad2.left_bumper && stage == 0 && !leftbumbperIsPressed)
+            {
+                stage = 1;
+                leftbumbperIsPressed = true;
+            }
+            else if(gamepad2.left_bumper && stage == 1  && !leftbumbperIsPressed)
+            {
+                stage = 2;
+                leftbumbperIsPressed = true;
+            }
+            else if(gamepad2.left_bumper && stage == 2  && !leftbumbperIsPressed)
+            {
+                stage = 0;
+                leftbumbperIsPressed = true;
+            }
+            else if(leftbumbperIsPressed && !gamepad2.left_bumper)
+            {
+                leftbumbperIsPressed = false;
+            }
+
+            Schieter.OpenWipper(stage);
+
+            telemetry.addData("Motor pos: ", SchietMotor.getCurrentPosition());
+            telemetry.addData("Motor pos2: ", SchietMotor2.getCurrentPosition());
             telemetry.update();
         }
     }

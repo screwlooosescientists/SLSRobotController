@@ -6,28 +6,28 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 public class Katapult {
     private DcMotor Motor = null;
+    private DcMotor Motor2 = null;
     private Servo Wipper = null;
+    private Servo WipperOG = null;
 
-    public Katapult(DcMotor motor, Servo wipper)
+    public Katapult(DcMotor motor, DcMotor motor2, Servo wipper, Servo wipperOG)
     {
         this.Motor = motor;
+        this.Motor2 = motor2;
         this.Wipper = wipper;
+        this.WipperOG = wipperOG;
         Motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         Motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        Motor2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        Motor2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 
-    public void ShootKatapult(boolean fireButton)
+    public void ShootKatapult(double fireButton)
     {
         Motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        if(fireButton)
-        {
-            Motor.setPower(0.7);
-        }
-        else
-        {
-            Motor.setPower(0);
-            Motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        }
+        Motor2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        Motor.setPower(fireButton);
+        Motor2.setPower(-fireButton);
     }
 
     public void LowerKatapult(boolean lowerButton, int position)
@@ -36,13 +36,20 @@ public class Katapult {
         if(lowerButton)
         {
             Motor.setTargetPosition(position);
+            Motor2.setTargetPosition(-position);
             Motor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            Motor.setPower(1);
+            Motor2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            Motor.setPower(0.5);
+            Motor2.setPower(0.5);
         }
         else
         {
+            Motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            Motor2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             Motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             Motor.setPower(0);
+            Motor2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            Motor2.setPower(0);
         }
     }
 
@@ -54,7 +61,34 @@ public class Katapult {
         }
         else
         {
-            Wipper.setPosition(0.2);
+            Wipper.setPosition(0);
         }
     }
+
+    public void OpenWipper(int stage)
+    {
+        switch (stage)
+        {
+            case 0:
+
+                Wipper.setPosition(1);
+                WipperOG.setPosition(1);
+
+                break;
+            case 1:
+
+                Wipper.setPosition(0.5);
+                WipperOG.setPosition(1);
+
+                break;
+
+            case 2:
+
+                Wipper.setPosition(0.5);
+                WipperOG.setPosition(0.5);
+
+                break;
+        }
+    }
+
 }
