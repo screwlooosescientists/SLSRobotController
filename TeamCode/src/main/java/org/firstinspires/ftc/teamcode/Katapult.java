@@ -14,16 +14,9 @@ public class Katapult {
         this.Wipper = wipper;
     }
 
-    public void ShootKatapult(boolean fireButton)
+    public void ShootKatapult(double fireButton)
     {
-        if(fireButton)
-        {
-            Motor.setPower(0.7);
-        }
-        else
-        {
-            Motor.setPower(0);
-        }
+        Motor.setPower(fireButton);
     }
 
     public void Laden(boolean wipen)
@@ -35,6 +28,22 @@ public class Katapult {
         else
         {
             Wipper.setPosition(0);
+        }
+    }
+
+    /**
+     * Shoots the catapult once
+     */
+    public void Tak()
+    {
+        Motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        Motor.setTargetPosition(288);
+        Motor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        Motor.setPower(1);
+
+        while(Motor.isBusy())
+        {
+
         }
     }
 }
