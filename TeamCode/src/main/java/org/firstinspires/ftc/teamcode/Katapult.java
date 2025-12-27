@@ -4,9 +4,15 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import org.firstinspires.ftc.teamcode.SLS_Classes.DcMotorSLS;
+
 public class Katapult {
     private DcMotor Motor = null;
     private DcMotor Motor2 = null;
+
+    private DcMotorSLS Motorsls1 = null;
+    private DcMotorSLS Motorsls2 = null;
+
     private Servo Wipper = null;
     private Servo WipperOG = null;
 
@@ -20,6 +26,9 @@ public class Katapult {
         Motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         Motor2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         Motor2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+
+
     }
 
     public void ShootKatapult(double fireButton)
