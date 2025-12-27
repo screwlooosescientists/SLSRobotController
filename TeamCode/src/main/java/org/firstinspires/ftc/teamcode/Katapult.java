@@ -100,4 +100,19 @@ public class Katapult {
         }
     }
 
+    /**
+     * Shoots the catapult once
+     */
+    public void Tak()
+    {
+        Motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        Motor.setTargetPosition(288);
+        Motor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        Motor.setPower(1);
+
+        while(Motor.isBusy())
+        {
+
+        }
+    }
 }
