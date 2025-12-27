@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.SLS_Classes.DcMotorSLS;
@@ -27,7 +28,7 @@ public class Katapult {
         Motor2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         Motor2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-
+        Motor2.setDirection(DcMotorSimple.Direction.REVERSE);
 
     }
 
@@ -36,7 +37,7 @@ public class Katapult {
         Motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         Motor2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         Motor.setPower(fireButton);
-        Motor2.setPower(-fireButton);
+        Motor2.setPower(fireButton);
     }
 
     public void LowerKatapult(boolean lowerButton, int position)
@@ -44,17 +45,21 @@ public class Katapult {
 
         if(lowerButton)
         {
+
             Motor.setTargetPosition(position);
-            Motor2.setTargetPosition(-position);
+            Motor2.setTargetPosition(position);
+            Motor2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
             Motor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            Motor2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            Motor.setPower(0.5);
-            Motor2.setPower(0.5);
+            Motor.setPower(1);
+            Motor2.setPower(1);
+            while(Motor.isBusy()){
+
+            }
+            Motor2.setPower(0);
+            Motor.setPower(0);
         }
         else
         {
-            Motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            Motor2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             Motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             Motor.setPower(0);
             Motor2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -103,16 +108,19 @@ public class Katapult {
     /**
      * Shoots the catapult once
      */
-    public void Tak()
+    public void Tak(int i)
     {
-        Motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
         Motor.setTargetPosition(288);
         Motor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        Motor2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         Motor.setPower(1);
-
+        Motor2.setPower(1);
         while(Motor.isBusy())
         {
 
         }
+        Motor2.setPower(0);
+        Motor.setPower(0);
     }
 }
