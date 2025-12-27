@@ -69,7 +69,9 @@ public class Blue_1 extends LinearOpMode
 
     private Katapult Schieter = null;
     private DcMotor SchietMotor = null;
+    private DcMotor SchietMotor2 = null;
     private Servo WipMotor = null;
+    private Servo WipMotorOg = null;
     private AutonomousDrive Drive = null;
 
 
@@ -82,11 +84,13 @@ public class Blue_1 extends LinearOpMode
         frontRightDrive = hardwareMap.get(DcMotor.class, "right_front");
         backLeftDrive = hardwareMap.get(DcMotor.class, "left_back");
         backRightDrive = hardwareMap.get(DcMotor.class, "right_back");
-
         SchietMotor = hardwareMap.get(DcMotor.class, "katapult");
+        SchietMotor2 = hardwareMap.get(DcMotor.class, "KatapultOG" );
         WipMotor = hardwareMap.get(Servo.class, "Wipper");
+        WipMotorOg = hardwareMap.get(Servo.class, "wipperOG");
 
-        Schieter = new Katapult(SchietMotor, WipMotor);
+
+        Schieter = new Katapult(SchietMotor, SchietMotor2,  WipMotor, WipMotorOg );
         Drive = new AutonomousDrive(frontLeftDrive, frontRightDrive, backRightDrive, backLeftDrive);
 
         frontLeftDrive.setDirection(DcMotor.Direction.REVERSE);
