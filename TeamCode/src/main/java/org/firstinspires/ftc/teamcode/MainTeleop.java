@@ -52,11 +52,8 @@ public class MainTeleop extends LinearOpMode {
 
             drive.drive(Powerleft_stick_y, Powerleft_stick_x, Powerright_stick_x);
 
-            if(gamepad2.right_bumper)
-            {
-                Schieter.LowerKatapult( true, 180); //todo get correct point
-            }
-            else if (gamepad2.right_trigger != 0){
+
+            if (gamepad2.right_trigger != 0){
                 Schieter.ShootKatapult(gamepad2.right_trigger);
 
             }
