@@ -19,6 +19,7 @@ public class Drive
 
     public void drive(double Y1, double X1, double X2)
     {
+        /// TODO check front side of robot
         double LeftFront = -(Y1 - X1 + X2);
         double LeftBack = -(Y1 + X1 + X2);
         double RightFront = -(-Y1 - X1 + X2);
@@ -29,4 +30,6 @@ public class Drive
         rightback.setPower(RightBack);
         leftback.setPower(LeftBack);
     }
+
+
 }
