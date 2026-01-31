@@ -48,8 +48,8 @@ import java.util.concurrent.TimeUnit;
 import static org.firstinspires.ftc.teamcode.AutonomousDrive.*;
 import static org.firstinspires.ftc.teamcode.Data.AutonomousConfiguration.*;
 
-@Autonomous(name="Blue1", preselectTeleOp = "teleop")
-public class Blue_1 extends LinearOpMode
+@Autonomous(name="Blue2", preselectTeleOp = "teleop")
+public class Blue_2 extends LinearOpMode
 {
     // Adjust these numbers to suit your robot.
     final double DESIRED_DISTANCE = 50; //  this is how close the camera should get to the target (inches)
@@ -109,6 +109,8 @@ public class Blue_1 extends LinearOpMode
 //TODO Here goes the autonomous program
 
         SchietMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        Drive.DriveForward(-3);
+
         driveToTag();
         Schieter.Tak(0); //TAK! TAK! TAK! (3x schieten)
         for(int i = 1; i < 3; i++)
@@ -236,10 +238,6 @@ public class Blue_1 extends LinearOpMode
         double  strafe          = 0;        // Desired strafe power/speed (-1 to +1)
         double  turn            = 0;        // Desired turning power/speed (-1 to +1)
 
-        frontLeftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        frontRightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        backRightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        backLeftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         double totalError = 1000;
         while (Math.abs(totalError) > 7 && opModeIsActive())
@@ -253,7 +251,7 @@ public class Blue_1 extends LinearOpMode
             }
             else
             {
-                telemetry.addData("Tag Found", false);
+                telemetry.addData("cant find tag", false);
             }
 
             // Step through the list of detected tags and look for a matching tag

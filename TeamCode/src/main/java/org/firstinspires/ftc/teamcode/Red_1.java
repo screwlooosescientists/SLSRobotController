@@ -122,7 +122,7 @@ public class Red_1 extends LinearOpMode
 
         }
         Drive.DriveRight(0.5);
-        Drive.DriveForward(-5);
+        Drive.DriveForward(-3);
 
     }
 
@@ -239,7 +239,7 @@ public class Red_1 extends LinearOpMode
 
 
         double totalError = 1000;
-        while (Math.abs(totalError) > 2 && opModeIsActive()) //TODO tune strictnes
+        while (Math.abs(totalError) > 7 && opModeIsActive()) //TODO tune strictnes
         {
             targetFound = false;
             desiredTag  = null;
