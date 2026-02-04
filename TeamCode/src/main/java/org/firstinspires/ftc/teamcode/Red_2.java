@@ -109,8 +109,11 @@ public class Red_2 extends LinearOpMode
 
         //TODO Here goes the autonomous program
 
+        Drive.DriveForward(-3);
+
         SchietMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         driveToTag();
+
         Schieter.Tak(0); //TAK! TAK! TAK! (3x schieten)
         for(int i = 1; i < 3; i++)
         {
@@ -122,7 +125,7 @@ public class Red_2 extends LinearOpMode
 
         }
         Drive.DriveRight(0.5);
-        Drive.DriveForward(-5);
+        Drive.DriveForward(-3);
 
     }
 
