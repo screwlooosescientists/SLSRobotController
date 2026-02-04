@@ -53,7 +53,7 @@ import static org.firstinspires.ftc.teamcode.Data.AutonomousConfiguration.*;
 public class Red_2 extends LinearOpMode
 {
     // Adjust these numbers to suit your robot.
-    final double DESIRED_DISTANCE = 50; //  this is how close the camera should get to the target (inches)
+    final double DESIRED_DISTANCE = 60; //  this is how close the camera should get to the target (inches)
 
     private DcMotor frontLeftDrive = null;  //  Used to control the left front drive wheel
     private DcMotor frontRightDrive = null;  //  Used to control the right front drive wheel
@@ -105,6 +105,7 @@ public class Red_2 extends LinearOpMode
         // Wait for driver to press start
         telemetry.addData(">", "Touch START to start OpMode");
         telemetry.update();
+        Schieter.OpenWipper(0);
         waitForStart();
 
         //TODO Here goes the autonomous program
@@ -242,7 +243,7 @@ public class Red_2 extends LinearOpMode
 
 
         double totalError = 1000;
-        while (Math.abs(totalError) > 2 && opModeIsActive()) //TODO tune strictnes
+        while (Math.abs(totalError) > 6 && opModeIsActive()) //TODO tune strictnes
         {
             targetFound = false;
             desiredTag  = null;
