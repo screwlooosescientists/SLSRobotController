@@ -114,7 +114,7 @@ public class Red_2 extends LinearOpMode
 
         SchietMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         driveToTag();
-
+        Drive.DriveForward(1);
         Schieter.Tak(0); //TAK! TAK! TAK! (3x schieten)
         for(int i = 1; i < 3; i++)
         {
