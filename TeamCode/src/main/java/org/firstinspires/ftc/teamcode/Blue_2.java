@@ -48,8 +48,8 @@ import java.util.concurrent.TimeUnit;
 import static org.firstinspires.ftc.teamcode.AutonomousDrive.*;
 import static org.firstinspires.ftc.teamcode.Data.AutonomousConfiguration.*;
 
-@Autonomous(name="Blue1", preselectTeleOp = "teleop")
-public class Blue_1 extends LinearOpMode
+@Autonomous(name="Blue2", preselectTeleOp = "teleop")
+public class Blue_2 extends LinearOpMode
 {
     // Adjust these numbers to suit your robot.
     final double DESIRED_DISTANCE = 60; //  this is how close the camera should get to the target (inches)
@@ -109,7 +109,7 @@ public class Blue_1 extends LinearOpMode
 
 //TODO Here goes the autonomous program
 
-
+        Drive.DriveForward(-3);
         SchietMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         driveToTag();
         Drive.DriveForward(1);
