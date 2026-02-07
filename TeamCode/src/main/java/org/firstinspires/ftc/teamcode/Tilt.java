@@ -21,8 +21,8 @@ public class Tilt
 
    public void TiltDown()
     {
-        tiltRechts.setPosition(1); // TODO Position meten met servo tester
-        tiltLinks.setPosition(1); // TODO Position meten met servo tester
+        tiltRechts.setPosition(0.66); // TODO Position meten met servo tester
+        tiltLinks.setPosition(0.66); // TODO Position meten met servo tester
     }
 }
 
