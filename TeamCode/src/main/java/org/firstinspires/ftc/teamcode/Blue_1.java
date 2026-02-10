@@ -113,6 +113,7 @@ public class Blue_1 extends LinearOpMode
         SchietMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         driveToTag();
         Drive.DriveForward(1);
+        Drive.Turn(-0.5);
         Schieter.Tak(0); //TAK! TAK! TAK! (3x schieten)
         for(int i = 1; i < 3; i++)
         {
@@ -123,6 +124,7 @@ public class Blue_1 extends LinearOpMode
             Schieter.Tak(i);
 
         }
+        Drive.Turn(0.5);
         Drive.DriveRight(-0.5);
         Drive.DriveForward(-3);
 

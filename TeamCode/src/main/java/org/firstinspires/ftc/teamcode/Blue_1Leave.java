@@ -33,6 +33,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.BuiltinCameraDirection;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
@@ -48,8 +49,8 @@ import java.util.concurrent.TimeUnit;
 import static org.firstinspires.ftc.teamcode.AutonomousDrive.*;
 import static org.firstinspires.ftc.teamcode.Data.AutonomousConfiguration.*;
 
-@Autonomous(name="Blue2", preselectTeleOp = "teleop")
-public class Blue_2 extends LinearOpMode
+@Autonomous(name="Blue_1Leave", preselectTeleOp = "MainTeleop.java")
+public class Blue_1Leave extends LinearOpMode
 {
     // Adjust these numbers to suit your robot.
     final double DESIRED_DISTANCE = 60; //  this is how close the camera should get to the target (inches)
@@ -60,8 +61,7 @@ public class Blue_2 extends LinearOpMode
     private DcMotor backRightDrive = null;  //  Used to control the right back drive wheel
 
     private static final boolean USE_WEBCAM = true;  // Set true to use a webcam, or false for a phone camera
-    //TODO id instellen
-    private static final int DESIRED_TAG_ID = 20;     // Choose the tag you want to approach or set to -1 for ANY tag.
+    private static final int DESIRED_TAG_ID = 24;     // Choose the tag you want to approach or set to -1 for ANY tag.
     private VisionPortal visionPortal;               // Used to manage the video source.
     private AprilTagProcessor aprilTag;              // Used for managing the AprilTag detection process.
     private AprilTagDetection desiredTag = null;     // Used to hold the data for a detected AprilTag
@@ -74,12 +74,14 @@ public class Blue_2 extends LinearOpMode
     private Servo WipMotorOg = null;
     private AutonomousDrive Drive = null;
 
+    ElapsedTime delayTimer = new ElapsedTime();
+    boolean delayActive = false;
+
 
     @Override public void runOpMode()
     {
         // Initialize the Apriltag Detection process
         initAprilTag();
-
         frontLeftDrive = hardwareMap.get(DcMotor.class, "left_front");
         frontRightDrive = hardwareMap.get(DcMotor.class, "right_front");
         backLeftDrive = hardwareMap.get(DcMotor.class, "left_back");
@@ -88,7 +90,6 @@ public class Blue_2 extends LinearOpMode
         SchietMotor2 = hardwareMap.get(DcMotor.class, "KatapultOG" );
         WipMotor = hardwareMap.get(Servo.class, "Wipper");
         WipMotorOg = hardwareMap.get(Servo.class, "wipperOG");
-
 
         Schieter = new Katapult(SchietMotor, SchietMotor2,  WipMotor, WipMotorOg );
         Drive = new AutonomousDrive(frontLeftDrive, frontRightDrive, backRightDrive, backLeftDrive);
@@ -106,28 +107,9 @@ public class Blue_2 extends LinearOpMode
         telemetry.update();
         Schieter.OpenWipper(0);
         waitForStart();
+        //TODO Here goes the autonomous program
 
-//TODO Here goes the autonomous program
-
-        Drive.DriveForward(-3);
-        SchietMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        driveToTag();
-        Drive.DriveForward(1);
-        Drive.Turn(-0.7);
-        Schieter.Tak(0); //TAK! TAK! TAK! (3x schieten)
-        for(int i = 1; i < 3; i++)
-        {
-            SchietMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            Schieter.LowerKatapult(true, 180 );
-            Schieter.OpenWipper(i);
-            waitSecondsNonBlocking(3, this);
-            Schieter.Tak(i);
-
-        }
-        Drive.Turn(0.7
-        );
-        Drive.DriveForward(-1.5);
-        Drive.DriveRight(-2);
+        Drive.DriveRight(-1.5);
 
     }
 
@@ -244,7 +226,7 @@ public class Blue_2 extends LinearOpMode
 
 
         double totalError = 1000;
-        while (Math.abs(totalError) > 6 && opModeIsActive())
+        while (Math.abs(totalError) > 6 && opModeIsActive()) //TODO tune strictnes
         {
             targetFound = false;
             desiredTag  = null;
@@ -321,6 +303,8 @@ public class Blue_2 extends LinearOpMode
             opMode.idle();
         }
     }
+
+
 }
 
 
