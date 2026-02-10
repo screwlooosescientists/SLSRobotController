@@ -15,14 +15,14 @@ public class Tilt
 
    public void TiltUp()
    {
-       tiltLinks.setPosition(0); // TODO Position meten met servo tester
-       tiltRechts.setPosition(0); // TODO Position meten met servo tester
+       tiltLinks.setPosition(0.3);
+       tiltRechts.setPosition(0.3);
    }
 
    public void TiltDown()
     {
-        tiltRechts.setPosition(0.66); // TODO Position meten met servo tester
-        tiltLinks.setPosition(0.66); // TODO Position meten met servo tester
+        tiltRechts.setPosition(0.66);
+        tiltLinks.setPosition(0.66);
     }
 }
 
