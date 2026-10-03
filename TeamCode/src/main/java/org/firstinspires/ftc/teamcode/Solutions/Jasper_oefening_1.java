@@ -1,35 +1,42 @@
-package org.firstinspires.ftc.teamcode.Solutions;
+package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-@TeleOp(name = "Motor naar graden", group = "TeleOp")
-public class Jasper_oefening_1 extends OpMode {
+@TeleOp(name = "HD Hex Motor Control")
+public class Jasper_oefening_1 extends LinearOpMode {
 
-    DcMotor motor;
-    double targetDegrees = 0;
-    final double TICKS_PER_REV = 288; // REV Core Hex motor encoder
-    final double DEGREES_PER_REV = 360;
+    private DcMotor motor;
+    private boolean motorAan = false;
 
     @Override
-    public void init() {
+    public void runOpMode() {
+
         motor = hardwareMap.get(DcMotor.class, "motor");
-        motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        motor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-    }
 
-    @Override
-    public void loop() {
-        if (gamepad1.triangle) {
-            targetDegrees = 90;
-        } else if (gamepad1.circle) {
-            targetDegrees = 0;
+        waitForStart();
+
+        while (opModeIsActive()) {
+
+            // X = motor aan
+            if (gamepad1.x) {
+                motorAan = true;
+            }
+
+            // Y = motor uit
+            if (gamepad1.y) {
+                motorAan = false;
+            }
+
+            if (motorAan) {
+                motor.setPower(-0.8); // 100% vermogen
+            } else {
+                motor .setPower(0.0); // uit
+            }
+
+            telemetry.addData("Motor", motorAan ? "AAN" : "UIT");
+            telemetry.update();
         }
-
-        int targetTicks = (int) (targetDegrees / DEGREES_PER_REV * TICKS_PER_REV);
-        motor.setTargetPosition(targetTicks);
-        motor.setPower(0.5); // Pas aan voor snelheid
     }
 }

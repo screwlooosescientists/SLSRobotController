@@ -1,12 +1,12 @@
 package org.firstinspires.ftc.teamcode.Solutions;
 
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-@Autonomous(name="Simple Autonomous", group="Tutorial")
-class SimpleAutonomous extends LinearOpMode {
+@TeleOp(name = "HD Hex Motor Control", group = "TeleOp")
+public class Autonomous extends LinearOpMode {
 
     private DcMotor left_Front = null;
     private DcMotor Right_Front = null;
