@@ -14,6 +14,9 @@ public class MainTeleop extends LinearOpMode {
     private DcMotor leftback = null;
     private Drive drive = null;
 
+    private DcMotor IntakeMotor = null;
+    private Intake intake = null;
+
     //vars
     int stage = 0;
     boolean leftbumbperIsPressed;
@@ -27,8 +30,10 @@ public class MainTeleop extends LinearOpMode {
         rightfront = hardwareMap.get(DcMotor.class, "right_front");
         rightback = hardwareMap.get(DcMotor.class, "right_back");
         leftback = hardwareMap.get(DcMotor.class, "left_back");
+        IntakeMotor = hardwareMap.get(DcMotor.class,"IntakeMotor");
 
         drive = new Drive(leftfront, rightfront, rightback, leftback);
+        intake = new Intake(IntakeMotor);
 
         waitForStart();
         while (opModeIsActive()) {
@@ -36,8 +41,24 @@ public class MainTeleop extends LinearOpMode {
             double Powerleft_stick_x = gamepad1.left_stick_x;
             double Powerright_stick_x = -gamepad1.right_stick_x;
 
+            if(gamepad1.right_trigger > 0.5)
+            {
+                intake.IntakeAan();
+            }
+            else if(gamepad1.right_trigger > 0.0)
+            {
+                intake.IntakeUit();
+            }
+
             drive.drive(Powerleft_stick_y, Powerleft_stick_x, Powerright_stick_x);
             telemetry.update();
+
+
+
         }
+
+
     }
+
 }
+
