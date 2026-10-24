@@ -36,9 +36,9 @@ public class MainTeleop extends LinearOpMode {
 
         waitForStart();
         while (opModeIsActive()) {
-            double Powerleft_stick_y = gamepad1.left_stick_y;
+            double Powerleft_stick_y = -gamepad1.left_stick_y;
             double Powerleft_stick_x = gamepad1.left_stick_x;
-            double Powerright_stick_x = -gamepad1.right_stick_x;
+            double Powerright_stick_x = gamepad1.right_stick_x;
 
             drive.drive(Powerleft_stick_y, Powerleft_stick_x, Powerright_stick_x);
             telemetry.update();
