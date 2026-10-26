@@ -15,7 +15,9 @@ public class MainTeleop extends LinearOpMode {
     private DcMotor leftback = null;
     private Drive drive = null;
 
-    private
+    private DcMotor OuttakeMotor = null;
+    private shooter shooter = null;
+
 
 
     //vars
@@ -43,6 +45,8 @@ public class MainTeleop extends LinearOpMode {
             double Powerleft_stick_y = gamepad1.left_stick_y;
             double Powerleft_stick_x = gamepad1.left_stick_x;
             double Powerright_stick_x = gamepad1.right_stick_x;
+
+
 
             drive.drive(Powerleft_stick_y, Powerleft_stick_x, Powerright_stick_x);
             telemetry.update();
