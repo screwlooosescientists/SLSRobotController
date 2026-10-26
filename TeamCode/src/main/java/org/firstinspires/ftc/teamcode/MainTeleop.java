@@ -18,6 +18,11 @@ public class MainTeleop extends LinearOpMode {
     private DcMotor OuttakeMotor = null;
     private shooter shooter = null;
 
+    private boolean dpadrightVorigeStatus = false;
+    private boolean dpadleftVorigeStatus = false;
+    private double maxShoterSnelheid = 0.5;
+
+
 
 
     //vars
@@ -29,22 +34,30 @@ public class MainTeleop extends LinearOpMode {
         telemetry.addData("Status", "Initialized");
         telemetry.update();
 
+
         leftfront = hardwareMap.get(DcMotor.class, "left_front");
         rightfront = hardwareMap.get(DcMotor.class, "right_front");
         rightback = hardwareMap.get(DcMotor.class, "right_back");
         leftback = hardwareMap.get(DcMotor.class, "left_back");
+        OuttakeMotor = hardwareMap.get(DcMotor.class, "Shooter");
         leftback.setDirection(DcMotorSimple.Direction.REVERSE);
         rightback.setDirection(DcMotorSimple.Direction.REVERSE);
         rightfront.setDirection(DcMotorSimple.Direction.REVERSE);
 
 
         drive = new Drive(leftfront, rightfront, rightback, leftback);
+        shooter = new shooter(OuttakeMotor);
 
         waitForStart();
         while (opModeIsActive()) {
             double Powerleft_stick_y = gamepad1.left_stick_y;
             double Powerleft_stick_x = gamepad1.left_stick_x;
             double Powerright_stick_x = gamepad1.right_stick_x;
+
+            if(gamepad2.left_trigger > 0.5)
+            {
+                Shooter
+            }
 
 
 
