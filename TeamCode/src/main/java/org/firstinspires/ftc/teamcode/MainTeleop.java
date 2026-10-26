@@ -58,11 +58,25 @@ public class MainTeleop extends LinearOpMode {
             {
                 shooter.ShooterUit();
             }
+
             else if(gamepad2.left_bumper)
             {
                 shooter.ShooterUit();
             }
 
+
+            if (gamepad1.dpad_right && !dpadrightVorigeStatus) {
+                maxShoterSnelheid += 0.1;
+                if (maxShoterSnelheid > 1.0) maxShoterSnelheid = 1.0;
+            }
+            dpadrightVorigeStatus = gamepad1.dpad_right;
+
+
+            if (gamepad1.dpad_left && !dpadleftVorigeStatus) {
+                maxShoterSnelheid -= 0.1;
+                if (maxShoterSnelheid < 0.0) maxShoterSnelheid = 0.0;
+            }
+            dpadleftVorigeStatus = gamepad1.dpad_left;
 
 
             drive.drive(Powerleft_stick_y, Powerleft_stick_x, Powerright_stick_x);
