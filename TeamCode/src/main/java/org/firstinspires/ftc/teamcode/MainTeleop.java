@@ -56,7 +56,11 @@ public class MainTeleop extends LinearOpMode {
 
             if(gamepad2.left_trigger > 0.5)
             {
-                Shooter
+                shooter.ShooterUit();
+            }
+            else if(gamepad2.left_bumper)
+            {
+                shooter.ShooterUit();
             }
 
 
