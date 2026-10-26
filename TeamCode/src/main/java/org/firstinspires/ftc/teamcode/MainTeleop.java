@@ -15,6 +15,8 @@ public class MainTeleop extends LinearOpMode {
     private DcMotor leftback = null;
     private Drive drive = null;
 
+    private
+
 
     //vars
     int stage = 0;
@@ -44,6 +46,8 @@ public class MainTeleop extends LinearOpMode {
 
             drive.drive(Powerleft_stick_y, Powerleft_stick_x, Powerright_stick_x);
             telemetry.update();
+
+
         }
     }
 }
