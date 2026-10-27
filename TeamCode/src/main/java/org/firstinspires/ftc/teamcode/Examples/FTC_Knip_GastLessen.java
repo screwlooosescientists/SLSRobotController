@@ -48,7 +48,7 @@ public class FTC_Knip_GastLessen extends LinearOpMode {
                 Shooter.setPower(1.0);
             }
 
-            else if(gamepad2.left_bumper)
+            else if(gamepad1.left_bumper)
             {
                 Shooter.setPower(0.0);
             }
