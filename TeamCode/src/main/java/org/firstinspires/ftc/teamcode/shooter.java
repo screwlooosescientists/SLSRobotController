@@ -13,7 +13,7 @@ public class shooter
 
     public void ShooterAan()
     {
-        OuttakeMotor.setPower(-1.0);
+        OuttakeMotor.setPower(1.0);
     }
 
     public void ShooterUit()

@@ -46,21 +46,14 @@ public class MainTeleop extends LinearOpMode {
         rightback = hardwareMap.get(DcMotor.class, "right_back");
         leftback = hardwareMap.get(DcMotor.class, "left_back");
         OuttakeMotor = hardwareMap.get(DcMotor.class, "Shooter");
+        shooter = new shooter(OuttakeMotor);
+        IntakeMotor = hardwareMap.get(DcMotor.class,"IntakeMotor");
+        drive = new Drive(leftfront, rightfront, rightback, leftback);
         leftback.setDirection(DcMotorSimple.Direction.REVERSE);
         rightback.setDirection(DcMotorSimple.Direction.REVERSE);
         rightfront.setDirection(DcMotorSimple.Direction.REVERSE);
 
 
-        drive = new Drive(leftfront, rightfront, rightback, leftback);
-        shooter = new shooter(OuttakeMotor);
-        IntakeMotor = hardwareMap.get(DcMotor.class,"IntakeMotor");
-        leftfront.setDirection(DcMotorSimple.Direction.REVERSE);
-        rightfront.setDirection(DcMotorSimple.Direction.REVERSE);
-        rightback.setDirection(DcMotorSimple.Direction.REVERSE);
-        // leftback.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        //rightback.setMode()
-         //
-         //
 
         drive = new Drive(leftfront, rightfront, rightback, leftback);
         intake = new Intake(IntakeMotor);
@@ -73,7 +66,7 @@ public class MainTeleop extends LinearOpMode {
 
             if(gamepad2.left_trigger > 0.5)
             {
-                shooter.ShooterUit();
+                shooter.ShooterAan();
             }
 
             else if(gamepad2.left_bumper)
