@@ -15,6 +15,15 @@ public class MainTeleop extends LinearOpMode {
     private DcMotor leftback = null;
     private Drive drive = null;
 
+    private DcMotor OuttakeMotor = null;
+    private shooter shooter = null;
+
+    private boolean dpadrightVorigeStatus = false;
+    private boolean dpadleftVorigeStatus = false;
+    private double maxShoterSnelheid = 0.5;
+
+
+
     private DcMotor IntakeMotor = null;
     private Intake intake = null;
 
@@ -31,10 +40,19 @@ public class MainTeleop extends LinearOpMode {
         telemetry.addData("Status", "Initialized");
         telemetry.update();
 
+
         leftfront = hardwareMap.get(DcMotor.class, "left_front");
         rightfront = hardwareMap.get(DcMotor.class, "right_front");
         rightback = hardwareMap.get(DcMotor.class, "right_back");
         leftback = hardwareMap.get(DcMotor.class, "left_back");
+        OuttakeMotor = hardwareMap.get(DcMotor.class, "Shooter");
+        leftback.setDirection(DcMotorSimple.Direction.REVERSE);
+        rightback.setDirection(DcMotorSimple.Direction.REVERSE);
+        rightfront.setDirection(DcMotorSimple.Direction.REVERSE);
+
+
+        drive = new Drive(leftfront, rightfront, rightback, leftback);
+        shooter = new shooter(OuttakeMotor);
         IntakeMotor = hardwareMap.get(DcMotor.class,"IntakeMotor");
         leftfront.setDirection(DcMotorSimple.Direction.REVERSE);
         rightfront.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -53,6 +71,29 @@ public class MainTeleop extends LinearOpMode {
             double Powerleft_stick_x = gamepad1.left_stick_x;
             double Powerright_stick_x = gamepad1.right_stick_x;
 
+            if(gamepad2.left_trigger > 0.5)
+            {
+                shooter.ShooterUit();
+            }
+
+            else if(gamepad2.left_bumper)
+            {
+                shooter.ShooterUit();
+            }
+
+
+            if (gamepad1.dpad_right && !dpadrightVorigeStatus) {
+                maxShoterSnelheid += 0.1;
+                if (maxShoterSnelheid > 1.0) maxShoterSnelheid = 1.0;
+            }
+            dpadrightVorigeStatus = gamepad1.dpad_right;
+
+
+            if (gamepad1.dpad_left && !dpadleftVorigeStatus) {
+                maxShoterSnelheid -= 0.1;
+                if (maxShoterSnelheid < 0.0) maxShoterSnelheid = 0.0;
+            }
+            dpadleftVorigeStatus = gamepad1.dpad_left;
             if(gamepad2.right_trigger > 0.5)
             {
                 intake.IntakeAan();
