@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@TeleOp(name="Tele op", group="Decode")
+@TeleOp(name="Teleop", group="BioBuzz")
 public class MainTeleop extends LinearOpMode {
 
     private DcMotor leftfront = null;
