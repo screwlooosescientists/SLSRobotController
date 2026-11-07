@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@TeleOp(name="Teleop", group="Decode")
+@TeleOp(name="Teleop", group="BioBuzz")
 public class MainTeleop extends LinearOpMode {
 
     private DcMotor leftfront = null;
@@ -24,6 +24,12 @@ public class MainTeleop extends LinearOpMode {
 
 
 
+    private DcMotor IntakeMotor = null;
+    private Intake intake = null;
+
+    private boolean dpadUpVorigeStatus = false;
+    private boolean dpadDownVorigeStatus = false;
+    private double maxSnelheid = 0.5;
 
     //vars
     int stage = 0;
@@ -47,10 +53,21 @@ public class MainTeleop extends LinearOpMode {
 
         drive = new Drive(leftfront, rightfront, rightback, leftback);
         shooter = new shooter(OuttakeMotor);
+        IntakeMotor = hardwareMap.get(DcMotor.class,"IntakeMotor");
+        leftfront.setDirection(DcMotorSimple.Direction.REVERSE);
+        rightfront.setDirection(DcMotorSimple.Direction.REVERSE);
+        rightback.setDirection(DcMotorSimple.Direction.REVERSE);
+        // leftback.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        //rightback.setMode()
+         //
+         //
+
+        drive = new Drive(leftfront, rightfront, rightback, leftback);
+        intake = new Intake(IntakeMotor);
 
         waitForStart();
         while (opModeIsActive()) {
-            double Powerleft_stick_y = gamepad1.left_stick_y;
+            double Powerleft_stick_y = -gamepad1.left_stick_y;
             double Powerleft_stick_x = gamepad1.left_stick_x;
             double Powerright_stick_x = gamepad1.right_stick_x;
 
@@ -77,6 +94,27 @@ public class MainTeleop extends LinearOpMode {
                 if (maxShoterSnelheid < 0.0) maxShoterSnelheid = 0.0;
             }
             dpadleftVorigeStatus = gamepad1.dpad_left;
+            if(gamepad2.right_trigger > 0.5)
+            {
+                intake.IntakeAan();
+            }
+            else if(gamepad2.right_bumper)
+            {
+                intake.IntakeUit();
+            }
+
+            if (gamepad1.dpad_up && !dpadUpVorigeStatus) {
+                maxSnelheid += 0.1;
+                if (maxSnelheid > 1.0) maxSnelheid = 1.0;
+            }
+            dpadUpVorigeStatus = gamepad1.dpad_up;
+
+
+            if (gamepad1.dpad_down && !dpadDownVorigeStatus) {
+                maxSnelheid -= 0.1;
+                if (maxSnelheid < 0.0) maxSnelheid = 0.0;
+            }
+            dpadDownVorigeStatus = gamepad1.dpad_down;
 
 
             drive.drive(Powerleft_stick_y, Powerleft_stick_x, Powerright_stick_x);
@@ -84,5 +122,9 @@ public class MainTeleop extends LinearOpMode {
 
 
         }
+
+
     }
+
 }
+
