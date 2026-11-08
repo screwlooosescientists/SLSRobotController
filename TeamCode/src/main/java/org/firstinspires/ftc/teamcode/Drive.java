@@ -4,13 +4,13 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 public class Drive
 {
-    private DcMotor leftfront = null;
-    private DcMotor rightfront = null;
-    private DcMotor rightback = null;
-    private DcMotor leftback = null;
+    private DcMotor leftfront;
+    private DcMotor rightfront;
+    private DcMotor rightback;
+    private DcMotor leftback;
 
-
-    public Drive(DcMotor leftfront, DcMotor rightfront, DcMotor rightback, DcMotor leftback)
+    public Drive(DcMotor leftfront, DcMotor rightfront,
+                 DcMotor rightback, DcMotor leftback)
     {
         this.leftfront = leftfront;
         this.leftback = leftback;
@@ -18,19 +18,22 @@ public class Drive
         this.rightback = rightback;
     }
 
-    public void drive(double Y1, double X1, double X2)
+    public void Update(double Y1, double X1, double X2)
     {
-        /// TODO check front side of robot
-        double LeftFront = (Y1 + X1 + X2);
-        double LeftBack = (Y1 - X1 + X2);
-        double RightFront = (Y1 - X1 - X2);
-        double RightBack = (Y1 + X1 - X2);
+        double leftFrontPower = Y1 + X1 + X2;
+        double leftBackPower = Y1 - X1 + X2;
+        double rightFrontPower = Y1 - X1 - X2;
+        double rightBackPower = Y1 + X1 - X2;
 
-        leftfront.setPower(LeftFront);
-        rightfront.setPower(RightFront);
-        rightback.setPower(RightBack);
-        leftback.setPower(LeftBack);
+        // Normalize motor powers
+        double maxPower = Math.max(1.0, Math.max(
+                Math.max(Math.abs(leftFrontPower), Math.abs(leftBackPower)),
+                Math.max(Math.abs(rightFrontPower), Math.abs(rightBackPower))
+        ));
+
+        leftfront.setPower(leftFrontPower / maxPower);
+        leftback.setPower(leftBackPower / maxPower);
+        rightfront.setPower(rightFrontPower / maxPower);
+        rightback.setPower(rightBackPower / maxPower);
     }
-
-
 }
