@@ -28,7 +28,7 @@ public class InputController {
         // DRIVETRAIN INPUTS
         // =========================
 
-        inputs.driveForward = -gamepad1.left_stick_y;
+        inputs.driveForward = gamepad1.left_stick_y;
         inputs.driveStrafe = gamepad1.left_stick_x;
         inputs.driveTurn = gamepad1.right_stick_x;
 

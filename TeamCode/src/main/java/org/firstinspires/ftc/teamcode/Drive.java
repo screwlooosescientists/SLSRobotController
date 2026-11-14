@@ -20,10 +20,10 @@ public class Drive
 
     public void Update(double Y1, double X1, double X2)
     {
-        double leftFrontPower = Y1 + X1 + X2;
-        double leftBackPower = Y1 - X1 + X2;
-        double rightFrontPower = Y1 - X1 - X2;
-        double rightBackPower = Y1 + X1 - X2;
+        double leftFrontPower =     Y1 - X1 - X2;
+        double leftBackPower =      Y1 + X1 - X2;
+        double rightFrontPower =   -Y1 - X1 - X2;
+        double rightBackPower =    -Y1 + X1 - X2;
 
         // Normalize motor powers
         double maxPower = Math.max(1.0, Math.max(
