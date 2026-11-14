@@ -1,10 +1,13 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.hardware.Servo;
+
 import org.firstinspires.ftc.teamcode.SLS_Classes.DcMotorSLS;
 
 public class Shooter {
 
     private final DcMotorSLS outtakeMotor;
+    private final Servo fireServo;
 
     // Encoder configuration
     private static final double TICKS_PER_REV = 28;
@@ -32,13 +35,14 @@ public class Shooter {
     private static final double kD = 0.0;
 
     private static final double kS = 0.08;
-    private static final double kV = 0.00037;
+    private static final double kV = 0.0003;
     private static final double kA = 0.0;
 
 
-    public Shooter(DcMotorSLS shooterMotor) {
+    public Shooter(DcMotorSLS shooterMotor, Servo fireServo) {
 
         this.outtakeMotor = shooterMotor;
+        this.fireServo = fireServo;
 
         outtakeMotor.setVelocityPIDF(
                 kP, kI, kD,
@@ -68,6 +72,18 @@ public class Shooter {
     // --------------------------------------------------
     // COMMANDS
     // --------------------------------------------------
+
+    public void fire()
+    {
+        //TODO tune servo pos
+        fireServo.setPosition(1);
+    }
+
+    public void stopFire()
+    {
+        //TODO tune servo pos
+        fireServo.setPosition(0);
+    }
 
     public void spinUp() {
 

@@ -40,6 +40,15 @@ public class InputController {
         inputs.shooterOff = !inputs.shooterOn && gamepad2.left_bumper;
 
 
+        if(gamepad2.triangle)
+        {
+            inputs.fire = true;
+        }
+        else
+        {
+           inputs.fire = false;
+        }
+
         // =========================
         // INTAKE INPUTS
         // =========================

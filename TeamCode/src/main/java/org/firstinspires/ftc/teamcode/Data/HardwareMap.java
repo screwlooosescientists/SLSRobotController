@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.Data;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.SLS_Classes.DcMotorSLS;
 
@@ -23,6 +24,7 @@ public class HardwareMap {
 
     // Shooter
     public static DcMotorSLS shooterMotor;
+    public static Servo fireServo;
 
     // Intake
     public static DcMotor intakeMotor;
@@ -57,6 +59,9 @@ public class HardwareMap {
         shooterMotor = new DcMotorSLS(
                 hardwareMap.get(DcMotorEx.class, "Shooter")
         );
+
+        fireServo = hardwareMap.get(Servo.class,"fire_Shooter");
+        //todo add this servo to the hardware map!!
 
         // =========================
         // INTAKE

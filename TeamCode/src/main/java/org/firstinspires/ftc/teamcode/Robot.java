@@ -45,7 +45,7 @@ public class Robot {
                 HardwareMap.leftBack
         );
 
-        shooter = new Shooter(HardwareMap.shooterMotor);
+        shooter = new Shooter(HardwareMap.shooterMotor, HardwareMap.fireServo);
         intake = new Intake(HardwareMap.intakeMotor);
 
         // Start timing after initialization
@@ -78,6 +78,15 @@ public class Robot {
         }
         else if (input.shooterOff) {
             shooter.pause();
+        }
+
+        if(input.fire)
+        {
+            shooter.fire();
+        }
+        else
+        {
+            shooter.stopFire();
         }
 
         shooter.Update(deltaTime);
