@@ -13,7 +13,7 @@ public class InputController {
 
 
     // Adjustable speed limits
-    private double maxShooterSpeed = 0.5;
+    private double maxShooterSpeed = 1;
 
     public InputController(Gamepad gamepad1, Gamepad gamepad2) {
         this.gamepad1 = gamepad1;
@@ -39,14 +39,6 @@ public class InputController {
         inputs.shooterOn = gamepad2.left_trigger > 0.5;
         inputs.shooterOff = !inputs.shooterOn && gamepad2.left_bumper;
 
-        // Adjust shooter speed
-        if (gamepad1.dpad_right && !previousDpadRight) {
-            maxShooterSpeed = Math.min(1.0, maxShooterSpeed + 0.1);
-        }
-
-        if (gamepad1.dpad_left && !previousDpadLeft) {
-            maxShooterSpeed = Math.max(0.0, maxShooterSpeed - 0.1);
-        }
 
         // =========================
         // INTAKE INPUTS
