@@ -2,6 +2,9 @@ package org.firstinspires.ftc.teamcode.Data;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
+
+import org.firstinspires.ftc.teamcode.SLS_Classes.DcMotorSLS;
 
 public class HardwareMap {
 
@@ -19,7 +22,7 @@ public class HardwareMap {
     public static DcMotor rightBack;
 
     // Shooter
-    public static DcMotor shooterMotor;
+    public static DcMotorSLS shooterMotor;
 
     // Intake
     public static DcMotor intakeMotor;
@@ -50,7 +53,10 @@ public class HardwareMap {
         // SHOOTER
         // =========================
 
-        shooterMotor = hardwareMap.get(DcMotor.class, "Shooter");
+
+        shooterMotor = new DcMotorSLS(
+                hardwareMap.get(DcMotorEx.class, "Shooter")
+        );
 
         // =========================
         // INTAKE

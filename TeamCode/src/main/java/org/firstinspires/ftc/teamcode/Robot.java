@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.Gamepad;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.Data.HardwareMap;
 import org.firstinspires.ftc.teamcode.Data.InputController;
@@ -8,26 +9,29 @@ import org.firstinspires.ftc.teamcode.Data.InputState;
 
 public class Robot {
 
-    //components
+    // Components
     InputController inputController;
     Drive drive;
     Shooter shooter;
     Intake intake;
 
-
-    //used variables
+    // Gamepads
     Gamepad gamepad1;
     Gamepad gamepad2;
 
-    public Robot(Gamepad gamepad1, Gamepad gamepad2)
-    {
+    // Delta time
+    private final ElapsedTime updateTimer = new ElapsedTime();
+    private double deltaTime;
+
+    public Robot(Gamepad gamepad1, Gamepad gamepad2) {
         this.gamepad1 = gamepad1;
         this.gamepad2 = gamepad2;
+
         inputController = new InputController(gamepad1, gamepad2);
     }
 
     /**
-     * Initializes the robot components from the hardware map and sets initial states
+     * Initializes the robot components from the hardware map.
      */
     public void Initialize(
             com.qualcomm.robotcore.hardware.HardwareMap hardwareMap) {
@@ -42,16 +46,22 @@ public class Robot {
         );
 
         shooter = new Shooter(HardwareMap.shooterMotor);
-
         intake = new Intake(HardwareMap.intakeMotor);
+
+        // Start timing after initialization
+        updateTimer.reset();
     }
 
     /**
-     * Updates the states of all components
+     * Updates the states of all components.
      */
-    public void Update()
-    {
-        // Read the current controller inputs
+    public void Update() {
+
+        // Calculate delta time in seconds
+        deltaTime = updateTimer.seconds();
+        updateTimer.reset();
+
+        // Read controller inputs
         InputState input = inputController.Update();
 
         // ---------------- DRIVE ----------------
@@ -62,29 +72,28 @@ public class Robot {
         );
 
         // ---------------- SHOOTER ----------------
-        if (input.shooterOn)
-        {
+        if (input.shooterOn) {
             shooter.setMaxSpeed(input.maxShooterSpeed);
             shooter.spinUp();
         }
-        else if (input.shooterOff)
-        {
+        else if (input.shooterOff) {
             shooter.pause();
         }
 
-        shooter.Update();
+        shooter.Update(deltaTime);
 
         // ---------------- INTAKE ----------------
-        if (input.intakeOn)
-        {
+        if (input.intakeOn) {
             intake.start();
         }
-        else if (input.intakeOff)
-        {
+        else if (input.intakeOff) {
             intake.stop();
         }
 
         intake.Update();
     }
-}
 
+    public double getDeltaTime() {
+        return deltaTime;
+    }
+}
