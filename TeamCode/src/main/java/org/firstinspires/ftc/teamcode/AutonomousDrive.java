@@ -12,7 +12,12 @@ public class AutonomousDrive {
     private DcMotor backLeftDrive = null;  //  Used to control the left back drive wheel
     private DcMotor backRightDrive = null;
 
-
+    AutonomousDrive(DcMotor leftback, DcMotor leftfront, DcMotor rightback, DcMotor rightfront){
+        frontLeftDrive = leftfront;
+        frontRightDrive = rightfront;
+        backLeftDrive = leftback;
+        backRightDrive = rightback;
+    }
     //double LeftFront = -(Y1 - X1 + X2);
     // double LeftBack = -(Y1 + X1 + X2);
     //double RightFront = -(-Y1 - X1 + X2);
