@@ -13,45 +13,48 @@ public class Red_1 extends LinearOpMode
 
 
 
-    private DcMotor leftFront = null;
-    private DcMotor leftBack = null;
-    private DcMotor rightFront = null;
-    private DcMotor rightBack = null;
+    private DcMotor frontLeftDrive = null;  //  Used to control the left front drive wheel
+    private DcMotor frontRightDrive = null;  //  Used to control the right front drive wheel
+    private DcMotor backLeftDrive = null;  //  Used to control the left back drive wheel
+    private DcMotor backRightDrive = null;
 
-    //private DcMotor  = null;
-    private Servo WipMotor = null;
+    public Red_1(DcMotor fR, DcMotor fL, DcMotor bR, DcMotor bL)
+    {
+        this.frontRightDrive = fR;
+        this.backLeftDrive = bL;
+        this.backRightDrive = bR;
+        this.frontLeftDrive = fL;
+    }
+
+
     private AutonomousDrive Drive = null;
 
 
     @Override public void runOpMode() {
 
 
-        leftFront = hardwareMap.get(DcMotor.class, "left_front");
-        rightFront = hardwareMap.get(DcMotor.class, "right_front");
-        leftBack = hardwareMap.get(DcMotor.class, "left_back");
-        rightBack = hardwareMap.get(DcMotor.class, "right_back");
+        frontLeftDrive = hardwareMap.get(DcMotor.class, "left_front");
+        frontRightDrive = hardwareMap.get(DcMotor.class, "right_front");
+        backLeftDrive = hardwareMap.get(DcMotor.class, "left_back");
+        backRightDrive = hardwareMap.get(DcMotor.class, "right_back");
+
+        frontRightDrive.setDirection(DcMotorSimple.Direction.REVERSE);
+        backRightDrive.setDirection(DcMotorSimple.Direction.REVERSE);
+        backLeftDrive.setDirection(DcMotorSimple.Direction.REVERSE);
 
 
-        //Shooter = hardwareMap.get(DcMotor.class, "katapult");
-        //Intake = hardwareMap.get(Servo.class, "Wipper");
-
-        //Schieter = new Katapult(SchietMotor, WipMotor);
-        Drive = new AutonomousDrive(leftFront, leftBack, rightBack, rightFront);
+        Drive = new AutonomousDrive(frontLeftDrive,frontRightDrive,backRightDrive,backLeftDrive);
 
 
-        rightFront.setDirection(DcMotorSimple.Direction.REVERSE);
-        rightBack.setDirection(DcMotorSimple.Direction.REVERSE);
-        leftBack.setDirection(DcMotorSimple.Direction.REVERSE);
 
 
-        // Wait for driver to press start
         telemetry.addData(">", "Touch START to start OpMode");
         telemetry.update();
         waitForStart();
 
 
         {
-            Drive.DriveForward(1);
+            Drive.DriveForward(7);
         }
     }
 }

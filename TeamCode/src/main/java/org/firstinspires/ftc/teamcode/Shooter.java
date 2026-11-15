@@ -76,7 +76,7 @@ public class Shooter {
     public void fire()
     {
         //TODO tune servo pos
-        fireServo.setPosition(1);
+        fireServo.setPosition(0.3);
     }
 
     public void stopFire()
