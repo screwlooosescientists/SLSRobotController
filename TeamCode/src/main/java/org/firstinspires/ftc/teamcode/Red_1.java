@@ -13,38 +13,26 @@ public class Red_1 extends LinearOpMode
 
 
 
-    private DcMotor frontLeftDrive = null;  //  Used to control the left front drive wheel
-    private DcMotor frontRightDrive = null;  //  Used to control the right front drive wheel
-    private DcMotor backLeftDrive = null;  //  Used to control the left back drive wheel
-    private DcMotor backRightDrive = null;
+    private DcMotor leftfront;
+    private DcMotor rightfront;
+    private DcMotor rightback;
+    private DcMotor leftback;
 
-    public Red_1(DcMotor fR, DcMotor fL, DcMotor bR, DcMotor bL)
-    {
-        this.frontRightDrive = fR;
-        this.backLeftDrive = bL;
-        this.backRightDrive = bR;
-        this.frontLeftDrive = fL;
-    }
-
-
-    private AutonomousDrive Drive = null;
+    private AutonomousDrive Drive ;
 
 
     @Override public void runOpMode() {
 
 
-        frontLeftDrive = hardwareMap.get(DcMotor.class, "left_front");
-        frontRightDrive = hardwareMap.get(DcMotor.class, "right_front");
-        backLeftDrive = hardwareMap.get(DcMotor.class, "left_back");
-        backRightDrive = hardwareMap.get(DcMotor.class, "right_back");
+        leftfront = hardwareMap.get(DcMotor.class, "left_front");
+        rightfront = hardwareMap.get(DcMotor.class, "right_front");
+        leftback = hardwareMap.get(DcMotor.class, "left_back");
+        rightback = hardwareMap.get(DcMotor.class, "right_back");
 
-        frontRightDrive.setDirection(DcMotorSimple.Direction.REVERSE);
-        backRightDrive.setDirection(DcMotorSimple.Direction.REVERSE);
-        backLeftDrive.setDirection(DcMotorSimple.Direction.REVERSE);
-
-
-        Drive = new AutonomousDrive(frontLeftDrive,frontRightDrive,backRightDrive,backLeftDrive);
-
+        leftfront.setDirection(DcMotorSimple.Direction.REVERSE);
+        rightback.setDirection(DcMotorSimple.Direction.REVERSE);
+        leftback.setDirection(DcMotorSimple.Direction.REVERSE);
+        Drive = new AutonomousDrive();
 
 
 
@@ -54,7 +42,7 @@ public class Red_1 extends LinearOpMode
 
 
         {
-            Drive.DriveForward(7);
+            Drive.Turn(2);
         }
     }
 }

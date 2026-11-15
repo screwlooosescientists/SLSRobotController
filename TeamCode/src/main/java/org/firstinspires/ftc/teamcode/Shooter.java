@@ -35,7 +35,7 @@ public class Shooter {
     private static final double kD = 0.0;
 
     private static final double kS = 0.08;
-    private static final double kV = 0.0003;
+    private static final double kV = 0.00040;
     private static final double kA = 0.0;
 
 

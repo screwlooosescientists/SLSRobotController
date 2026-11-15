@@ -12,13 +12,6 @@ public class AutonomousDrive {
     private DcMotor backLeftDrive = null;  //  Used to control the left back drive wheel
     private DcMotor backRightDrive = null;
 
-    public AutonomousDrive(DcMotor fR, DcMotor fL, DcMotor bR, DcMotor bL)
-    {
-        this.frontRightDrive = fR;
-        this.backLeftDrive = bL;
-        this.backRightDrive = bR;
-        this.frontLeftDrive = fL;
-    }
 
     //double LeftFront = -(Y1 - X1 + X2);
     // double LeftBack = -(Y1 + X1 + X2);
@@ -36,9 +29,9 @@ public class AutonomousDrive {
         backLeftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         backRightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-        frontLeftDrive.setTargetPosition(-(int)(rotations * TicksPerRev));
+        frontLeftDrive.setTargetPosition((int)(rotations * TicksPerRev));
         frontRightDrive.setTargetPosition(-(int)(rotations * TicksPerRev));
-        backLeftDrive.setTargetPosition(-(int)(rotations * TicksPerRev));
+        backLeftDrive.setTargetPosition((int)(rotations * TicksPerRev));
         backRightDrive.setTargetPosition(-(int)(rotations * TicksPerRev));
 
         frontLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
