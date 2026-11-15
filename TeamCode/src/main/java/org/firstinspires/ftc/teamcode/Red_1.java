@@ -11,14 +11,14 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class Red_1 extends LinearOpMode
 {
 
-    final double DESIRED_DISTANCE = 60;
+
 
     private DcMotor leftFront = null;
     private DcMotor leftBack = null;
     private DcMotor rightFront = null;
     private DcMotor rightBack = null;
 
-    private DcMotor SchietMotor = null;
+    //private DcMotor  = null;
     private Servo WipMotor = null;
     private AutonomousDrive Drive = null;
 
@@ -32,8 +32,8 @@ public class Red_1 extends LinearOpMode
         rightBack = hardwareMap.get(DcMotor.class, "right_back");
 
 
-        SchietMotor = hardwareMap.get(DcMotor.class, "katapult");
-        WipMotor = hardwareMap.get(Servo.class, "Wipper");
+        //Shooter = hardwareMap.get(DcMotor.class, "katapult");
+        //Intake = hardwareMap.get(Servo.class, "Wipper");
 
         //Schieter = new Katapult(SchietMotor, WipMotor);
         Drive = new AutonomousDrive(leftFront, leftBack, rightBack, rightFront);
@@ -51,7 +51,7 @@ public class Red_1 extends LinearOpMode
 
 
         {
-            Drive.DriveForward(-5);
+            Drive.DriveForward(1);
         }
     }
 }
