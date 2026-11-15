@@ -62,13 +62,12 @@ public class Blue_1 extends LinearOpMode {
 
 
 
-        Drive.DriveForward(1);
+        //Drive.DriveForward(1);
 
-        for (int i = 1; i < 3; i++) {
+        //for (int i = 1; i < 3; i++)
 
-        }
-        Drive.DriveRight(-0.5);
-        Drive.DriveForward(-3);
+        //Drive.DriveRight(1);
+        Drive.DriveForward(-5);
 
     }
 
