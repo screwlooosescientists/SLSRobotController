@@ -12,6 +12,7 @@ public class InputState {
     public boolean shooterOff;
     public double maxShooterSpeed;
     public boolean fire;
+    public boolean intake;
 
 
     // Intake

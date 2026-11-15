@@ -25,6 +25,7 @@ public class HardwareMap {
     // Shooter
     public static DcMotorSLS shooterMotor;
     public static Servo fireServo;
+    public static Servo intakerServo;
 
     // Intake
     public static DcMotor intakeMotor;
@@ -61,7 +62,8 @@ public class HardwareMap {
         );
 
         fireServo = hardwareMap.get(Servo.class,"fire_Shooter");
-        //todo add this servo to the hardware map!!
+
+        intakerServo = hardwareMap.get(Servo.class,"intaker_Servo");
 
         // =========================
         // INTAKE

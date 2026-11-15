@@ -46,7 +46,7 @@ public class Robot {
         );
 
         shooter = new Shooter(HardwareMap.shooterMotor, HardwareMap.fireServo);
-        intake = new Intake(HardwareMap.intakeMotor);
+        intake = new Intake(HardwareMap.intakeMotor, HardwareMap.intakerServo);
 
         // Start timing after initialization
         updateTimer.reset();
@@ -87,6 +87,14 @@ public class Robot {
         else
         {
             shooter.stopFire();
+        }
+        if(input.intake)
+        {
+            intake.intakerOn();
+        }
+        else
+        {
+            intake.stopintaker();
         }
 
         shooter.Update(deltaTime);

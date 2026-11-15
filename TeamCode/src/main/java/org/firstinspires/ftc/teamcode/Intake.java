@@ -1,10 +1,12 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
 
 public class Intake
 {
     private DcMotor intakeMotor;
+    private final Servo intaker;
 
     private enum IntakeState
     {
@@ -12,14 +14,27 @@ public class Intake
         RUNNING
     }
 
+    public void intakerOn()
+    {
+        //TODO tune servo pos
+        intaker.setPosition(1);
+    }
+
+    public void stopintaker()
+    {
+        //TODO tune servo pos
+        intaker.setPosition(0);
+    }
+
     private IntakeState currentState = IntakeState.IDLE;
 
     private double maxSpeed = 1.0;
 
-    public Intake(DcMotor intakeMotor)
+    public Intake(DcMotor intakeMotor, Servo intaker)
     {
         this.intakeMotor = intakeMotor;
         intakeMotor.setPower(0);
+        this.intaker = intaker;
     }
 
     // Commands

@@ -49,6 +49,15 @@ public class InputController {
            inputs.fire = false;
         }
 
+        if(gamepad2.circle)
+        {
+            inputs.intake = true;
+        }
+        else
+        {
+            inputs.intake = false;
+        }
+
         // =========================
         // INTAKE INPUTS
         // =========================
