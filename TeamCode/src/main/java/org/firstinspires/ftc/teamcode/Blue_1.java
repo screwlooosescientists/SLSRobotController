@@ -28,7 +28,7 @@ public class Blue_1 extends LinearOpMode {
     private DcMotor leftfront = null;  //  Used to control the left front drive wheel
     private DcMotor leftback= null;  //  Used to control the right front drive wheel
     private DcMotor rightback = null;  //  Used to control the left back drive wheel
-    private DcMotor rightfront = null;  //  Used to control the right back drive wheel
+    private DcMotor rightfront = null;//  Used to control the right back drive wheel
 
 
     private AutonomousDrive Drive = null;
@@ -58,17 +58,8 @@ public class Blue_1 extends LinearOpMode {
 
         waitForStart();
 
-//TODO Here goes the autonomous program
-
-
-
-        //Drive.DriveForward(1);
-
-        //for (int i = 1; i < 3; i++)
-
-        //Drive.DriveRight(1);
         Drive.DriveForward(0.5);
-
+    
     }
 
 

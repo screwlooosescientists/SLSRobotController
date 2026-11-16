@@ -37,7 +37,7 @@ public class AutonomousDrive {
         frontLeftDrive.setTargetPosition((int)(rotations * TicksPerRev));
         frontRightDrive.setTargetPosition(-(int)(rotations * TicksPerRev));
         backLeftDrive.setTargetPosition(-(int)(rotations * TicksPerRev));
-        backRightDrive.setTargetPosition( (int)(rotations * TicksPerRev));
+        backRightDrive.setTargetPosition((int)(rotations * TicksPerRev));
 
         frontLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         frontRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -143,7 +143,7 @@ public class AutonomousDrive {
 
     }
 
-    public void Turn(double rotations)
+    public void TurnLeft(double rotations)
     {
         frontLeftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         frontRightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
