@@ -8,6 +8,12 @@ import java.util.function.DoubleSupplier;
 import java.util.function.IntSupplier;
 
 public class DcMotorSLS {
+    public boolean isBusy() {
+        return false;
+    }
+
+    public void setMode(DcMotor.RunMode runMode) {
+    }
 
     // --------------------------------------------------
     // CONTROL MODES

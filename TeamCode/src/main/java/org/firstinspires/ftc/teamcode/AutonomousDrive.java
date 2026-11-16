@@ -1,9 +1,13 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
+
 import static org.firstinspires.ftc.teamcode.AutonomousDrive.*;
 import static org.firstinspires.ftc.teamcode.Data.AutonomousConfiguration.MAX_AUTO_SPEED;
 import static org.firstinspires.ftc.teamcode.Data.AutonomousConfiguration.TicksPerRev;
+
+import org.firstinspires.ftc.teamcode.SLS_Classes.DcMotorSLS;
 
 public class AutonomousDrive {
 
@@ -11,6 +15,9 @@ public class AutonomousDrive {
     private DcMotor frontRightDrive = null;  //  Used to control the right front drive wheel
     private DcMotor backLeftDrive = null;  //  Used to control the left back drive wheel
     private DcMotor backRightDrive = null;
+    private DcMotor intakeMotor;
+    private DcMotor outtakeMotor;
+    private Servo fireServo;
 
     AutonomousDrive(DcMotor leftback, DcMotor leftfront, DcMotor rightback, DcMotor rightfront){
         frontLeftDrive = leftfront;
@@ -182,4 +189,18 @@ public class AutonomousDrive {
 
 
     }
+
+    public void Shoot(double rotations)
+    {
+        outtakeMotor.setPower(MAX_AUTO_SPEED);
+
+        while (outtakeMotor.isBusy());
+        {
+
+        }
+        outtakeMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        outtakeMotor.setPower(0);
+    }
+
 }
